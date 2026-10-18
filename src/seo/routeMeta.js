@@ -1,5 +1,6 @@
 import { BRAND } from '../config/brand'
 import { SERVICES, servicePath } from '../data/services'
+import { CASE_STUDIES, projectPath } from '../data/projects'
 
 /**
  * Single source of truth for every public page's SEO metadata.
@@ -17,13 +18,13 @@ export const ROUTES = [
     path: '/',
     title: `${NAME} — Custom software, web and mobile development`,
     description:
-      'Elpisoft is a software studio in Bacolod City, Philippines. We build custom software, web and mobile apps, and business automation, and work with clients remotely.',
+      'Elpisoft is a software studio in Bacolod City, Philippines. We build custom software, web and mobile apps, automation and practical AI, and work with clients remotely.',
   },
   {
     path: '/services',
     title: `Software development services — ${NAME}`,
     description:
-      'Custom software, web applications, mobile apps and business automation, planned and built by Elpisoft with honest timelines and ongoing support.',
+      'Custom software, web apps, inventory management systems, mobile apps, automation and AI solutions, planned and built by Elpisoft with honest timelines and ongoing support.',
   },
   ...SERVICES.map((service) => ({
     path: servicePath(service),
@@ -33,11 +34,23 @@ export const ROUTES = [
     service,
   })),
   {
+    path: '/industries',
+    title: `Industries we build software for — ${NAME}`,
+    description:
+      'Software for finance, retail, education, public safety, healthcare, logistics, hospitality and real estate: the problems Elpisoft can help with and what we can build.',
+  },
+  {
     path: '/work',
     title: `Projects and case studies — ${NAME}`,
     description:
-      'Selected work from Elpisoft: lending, receipts, budgeting, anonymous feedback and emergency-response systems built for the web and mobile.',
+      'Selected work from Elpisoft: inventory management, lending, receipts, budgeting, anonymous feedback and emergency-response systems built for the web and mobile.',
   },
+  ...CASE_STUDIES.map((project) => ({
+    path: projectPath(project),
+    title: project.caseStudy.metaTitle,
+    description: project.caseStudy.metaDescription,
+    crumbs: [{ name: 'Work', path: '/work' }, { name: project.title, path: projectPath(project) }],
+  })),
   {
     path: '/about',
     title: `About ${NAME} — Software studio in Bacolod City, Philippines`,

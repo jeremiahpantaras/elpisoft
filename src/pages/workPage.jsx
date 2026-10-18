@@ -3,8 +3,9 @@ import Section from '../components/ui/Section'
 import Reveal from '../components/ui/Reveal'
 import ProjectCard from '../components/ui/ProjectCard'
 import ProjectIndex from '../components/ui/ProjectIndex'
+import CaseStudySpotlight from '../components/ui/CaseStudySpotlight'
 import ClosingCta from '../components/sections/ClosingCta'
-import { FEATURED_PROJECTS, PROJECTS } from '../data/projects'
+import { CASE_STUDIES, FEATURED_PROJECTS, PROJECTS } from '../data/projects'
 
 export default function WorkPage() {
   return (
@@ -12,6 +13,8 @@ export default function WorkPage() {
       <PageIntro eyebrow="02 — Work" title="Things we have built">
         A selection of products we have designed, built and shipped, from financial tools to public-safety systems.
       </PageIntro>
+
+      {CASE_STUDIES.map((project) => <CaseStudySpotlight key={project.slug} project={project} />)}
 
       <Section surface="deep" aria-labelledby="featured-projects">
         <h2 id="featured-projects" className="sr-only">Featured projects</h2>

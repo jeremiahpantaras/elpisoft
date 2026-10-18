@@ -21,7 +21,7 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-12 lg:col-span-4 lg:col-start-9">
-            <Reveal>
+            <Reveal id="call" className="scroll-mt-28">
               <h2 className="type-h3">Prefer to write or call?</h2>
               <ul className="mt-5 space-y-4">
                 <li className="flex items-start gap-3">

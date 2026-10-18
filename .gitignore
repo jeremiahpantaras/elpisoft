@@ -26,3 +26,9 @@ dist-ssr
 # Brand kit source files (internal & partner use). Needed assets are copied into public/brand and public/ root.
 public/Elpisoft Brand Guidelines/
 dist-server
+
+# Original (unoptimised) portrait downloads; only the optimised WebP files are committed.
+src/assets/portraits/source/
+
+# Original screenshot captures (may show browser chrome or workspace names); only the optimised WebP files are committed.
+src/assets/images/ims/source/

@@ -13,7 +13,7 @@ export default function ServicesOverview() {
         <Reveal className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <Eyebrow>01 — What we build</Eyebrow>
-            <h2 id="services-heading" className="type-h2 mt-5">Four ways we help teams move forward</h2>
+            <h2 id="services-heading" className="type-h2 mt-5">How we help teams move forward</h2>
             <p className="mt-4 max-w-[44ch] text-slate">
               Most projects combine more than one. Wherever we can, the examples link to products we have already built.
             </p>

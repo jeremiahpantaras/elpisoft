@@ -1,0 +1,719 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Elpisoft Showreel</title>
+<style>
+@font-face { font-family: 'PJS'; src: url('a/pjs.woff2') format('woff2'); font-weight: 200 800; }
+@font-face { font-family: 'JBM'; src: url('a/jbm.woff2') format('woff2'); font-weight: 500; }
+:root {
+  --navy:#0E1B3D; --deep:#08112A; --amber:#FFB020; --coral:#FF6B4A; --horizon:#2F5DE6;
+  --slate:#5A6377; --mist:#E4E1D9; --cloud:#F7F5F0;
+  --dawn: linear-gradient(45deg,#FF6B4A 0%,#FFB020 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+body { font-family: 'PJS', Arial, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--deep); }
+.scene { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+.abs { position: absolute; }
+.mono { font-family: 'JBM', monospace; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.m { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .02em .12em; margin-bottom: -.12em; }
+.w { display: inline-block; will-change: transform; }
+.dawn-text { background: var(--dawn); -webkit-background-clip: text; background-clip: text; color: transparent; }
+svg { overflow: visible; }
+.ico path, .ico polyline, .ico line, .ico circle, .ico rect, .ico polygon { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+
+/* ---------- S1 ---------- */
+#s1 { background: radial-gradient(120% 80% at 50% 80%, #13244f 0%, #08112A 55%, #050b1c 100%); }
+#s1 .sunclip { position: absolute; left: 0; top: 0; width: 1920px; height: 760px; overflow: hidden; }
+#s1 .sun { position: absolute; left: 360px; top: 198px; width: 1200px; }
+#s1 .glow { position: absolute; left: 260px; top: 260px; width: 1400px; height: 1000px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,150,60,.55), rgba(255,107,74,.18) 45%, rgba(255,107,74,0) 75%); }
+#s1 .rays { position: absolute; left: 160px; top: -440px; width: 1600px; height: 1600px; border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(255,176,32,.10) 0deg 4deg, rgba(255,176,32,0) 4deg 13deg);
+  -webkit-mask: radial-gradient(closest-side, #000 20%, transparent 100%); }
+#s1 .line { position: absolute; left: 0; top: 759px; width: 1920px; height: 3px;
+  background: linear-gradient(90deg, rgba(255,176,32,0), #FFB020 25%, #FF6B4A 50%, #FFB020 75%, rgba(255,176,32,0)); }
+#s1 .reflect { position: absolute; left: 360px; top: 762px; width: 1200px; height: 318px; overflow: hidden; opacity: .22; filter: blur(6px); }
+#s1 .reflect svg { position: absolute; left: 0; top: 0; width: 1200px; transform: scaleY(-1); transform-origin: 50% 0; }
+#s1 h1 { position: absolute; left: 0; width: 1920px; text-align: center; font-weight: 800; font-size: 118px; letter-spacing: -.035em; line-height: 1.05; }
+#s1 .l1 { top: 180px; } #s1 .l2 { top: 318px; }
+
+/* ---------- S2 ---------- */
+#s2 { background: radial-gradient(90% 90% at 75% 40%, #16295c 0%, #0E1B3D 50%, #08112A 100%); }
+.lockup { position: absolute; transform-origin: 0 0; }
+.lockup img { position: absolute; left: 0; top: 0; width: 100%; }
+.lockup svg.sym { position: absolute; }
+#s2 .lk { left: 410px; top: 402px; width: 1100px; height: 275px; }
+#s2 .copy { left: 160px; top: 430px; }
+#s2 .copy div { font-size: 92px; font-weight: 800; letter-spacing: -.035em; line-height: 1.08; }
+#s2 .copy .amb { color: var(--amber); }
+#s2 .coords { left: 164px; top: 800px; font-size: 22px; color: rgba(255,255,255,.55); }
+#s2 .island { left: 1290px; top: 130px; width: 470px; height: 836px; }
+#s2 .island img { width: 100%; height: 100%; object-fit: contain; filter: saturate(.9) brightness(.92); }
+#s2 .pin { left: 1482px; top: 362px; width: 0; height: 0; }
+#s2 .pin .dot { position: absolute; left: -11px; top: -11px; width: 22px; height: 22px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 5px rgba(8,17,42,.9), 0 0 30px 6px rgba(255,176,32,.8); }
+#s2 .pin .ring { position: absolute; left: -60px; top: -60px; width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--amber); }
+#s2 .pin .tag { position: absolute; left: -330px; top: -18px; font-size: 20px; color: #fff; background: rgba(8,17,42,.85); border: 1px solid rgba(255,176,32,.6); padding: 8px 14px; border-radius: 8px; white-space: nowrap; }
+#s2 .gridlines { position: absolute; left: 1230px; top: 90px; width: 600px; height: 920px; opacity: .25;
+  background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size: 60px 60px; -webkit-mask: radial-gradient(closest-side, #000, transparent); }
+#s2 .team { left: 164px; top: 880px; display: flex; align-items: center; gap: 18px; font-size: 22px; color: rgba(255,255,255,.75); }
+#s2 .team img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--navy); }
+#s2 .team .avs { display: flex; }
+#s2 .team .avs img + img { margin-left: -16px; }
+
+/* ---------- wipe ---------- */
+.wipe { position: absolute; top: -200px; height: 1480px; width: 2700px; transform: skewX(-22deg); background: var(--dawn); visibility: hidden; z-index: 40; }
+
+/* ---------- S3 ---------- */
+#s3 { background: var(--cloud); color: var(--navy); }
+#s3 .eb { left: 160px; top: 190px; font-size: 22px; color: var(--slate); }
+#s3 .lead { left: 160px; top: 240px; font-size: 64px; font-weight: 700; letter-spacing: -.02em; }
+#s3 .slot { left: 150px; top: 380px; width: 1700px; height: 300px; }
+#s3 .slot .big { position: absolute; left: 0; top: 10px; font-size: 206px; font-weight: 800; letter-spacing: -.05em; line-height: 1; white-space: nowrap; }
+#s3 .sub { left: 160px; top: 720px; font-size: 54px; font-weight: 600; color: var(--slate); letter-spacing: -.01em; }
+#s3 .arrow { left: 1570px; top: 470px; width: 300px; height: 80px; }
+#s3 .deco { left: 1260px; top: 120px; width: 900px; }
+#s3 .rule { left: 160px; top: 700px; width: 1600px; height: 3px; background: var(--mist); }
+#s3 .rule i { position: absolute; inset: 0; background: var(--dawn); transform-origin: 0 50%; }
+
+/* ---------- S3b (vision) ---------- */
+#s3b { background: radial-gradient(100% 90% at 50% 100%, #1a2c63 0%, #0E1B3D 45%, #08112A 100%); }
+#s3b .eb { left: 160px; top: 190px; font-size: 22px; color: var(--amber); }
+#s3b .lead { left: 160px; top: 250px; font-size: 76px; font-weight: 700; letter-spacing: -.025em; }
+#s3b .opt { left: 130px; top: 350px; font-size: 300px; font-weight: 800; letter-spacing: -.035em; line-height: 1; overflow: hidden; padding: 0 .06em .18em; }
+#s3b .not { left: 168px; top: 690px; font-size: 96px; font-weight: 700; letter-spacing: -.03em; color: rgba(255,255,255,.6); }
+#s3b .strike { left: 330px; top: 752px; width: 460px; height: 10px; background: var(--coral); border-radius: 6px; transform-origin: 0 50%; }
+#s3b .sunbg { left: 1080px; top: 330px; width: 900px; opacity: .9; }
+#s3b .hz { left: 0; top: 790px; width: 1920px; height: 2px; background: rgba(255,255,255,.12); }
+
+/* ---------- S4 ---------- */
+#s4 { background: #08112A; }
+#s4 .grid { position: absolute; inset: -120px; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 80px 80px; }
+#s4 .vign { position: absolute; inset: 0; background: radial-gradient(80% 70% at 50% 45%, rgba(8,17,42,0) 0%, rgba(8,17,42,.9) 100%); }
+#s4 .eb { left: 160px; top: 140px; font-size: 22px; color: var(--amber); }
+#s4 .ttl { left: 160px; top: 180px; font-size: 72px; font-weight: 800; letter-spacing: -.03em; }
+#s4 .cards { left: 155px; top: 330px; width: 1610px; height: 500px; perspective: 1400px; }
+.card { position: absolute; top: 0; width: 380px; height: 480px; border-radius: 18px; background: linear-gradient(180deg,#12234d,#0c1838); border: 1.5px solid rgba(255,255,255,.09); padding: 38px 34px; transform-origin: 50% 100%; }
+.card .n { font-size: 20px; color: var(--amber); }
+.card .ico { position: absolute; left: 34px; top: 92px; width: 92px; height: 92px; }
+.card .ico * { stroke: #fff; stroke-width: 1.6; }
+.card h3 { position: absolute; left: 34px; top: 222px; font-size: 42px; font-weight: 700; letter-spacing: -.02em; line-height: 1.08; width: 320px; }
+.card ul { position: absolute; left: 34px; top: 335px; list-style: none; font-size: 20px; line-height: 1.75; color: rgba(255,255,255,.6); }
+.card ul li::before { content: '— '; color: rgba(255,176,32,.8); }
+.card .bar { position: absolute; left: 0; bottom: 0; height: 6px; width: 100%; background: var(--dawn); border-radius: 0 0 18px 18px; transform-origin: 0 50%; transform: scaleX(0); }
+.card .hl { position: absolute; inset: -1.5px; border-radius: 18px; border: 2px solid var(--amber); opacity: 0; box-shadow: 0 0 60px rgba(255,140,50,.35), inset 0 0 40px rgba(255,176,32,.08); }
+#s4 .ticker { left: 0; top: 920px; width: 1920px; height: 60px; border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+#s4 .ticker .tt { position: absolute; top: 16px; left: 0; white-space: nowrap; font-size: 22px; color: rgba(255,255,255,.55); }
+#s4 .ticker .tt b { color: var(--amber); font-weight: 500; }
+
+/* ---------- S5 ---------- */
+#s5 { background: #070f26; }
+#s5 .blob { position: absolute; border-radius: 50%; }
+#s5 .b1 { left: 650px; top: -200px; width: 1400px; height: 1200px; background: radial-gradient(closest-side, rgba(47,93,230,.42), rgba(47,93,230,0)); }
+#s5 .b2 { left: 1000px; top: 300px; width: 1150px; height: 1000px; background: radial-gradient(closest-side, rgba(255,107,74,.26), rgba(255,107,74,0)); }
+#s5 .partA { position: absolute; inset: 0; }
+#s5 .info { position: absolute; left: 140px; top: 330px; width: 600px; }
+#s5 .info .tag { font-size: 20px; color: var(--amber); }
+#s5 .info .nm { margin-top: 18px; font-size: 120px; font-weight: 800; letter-spacing: -.05em; line-height: 1; white-space: nowrap; }
+#s5 .info .ds { margin-top: 28px; font-size: 30px; line-height: 1.4; color: rgba(255,255,255,.7); width: 540px; }
+#s5 .info .ix { position: absolute; left: 0; top: -70px; font-size: 20px; color: rgba(255,255,255,.4); }
+#s5 .stage3d { position: absolute; left: 700px; top: 170px; width: 1120px; height: 740px; perspective: 1800px; }
+.browser { position: absolute; left: 0; top: 60px; width: 1100px; border-radius: 16px; overflow: hidden; background: #0d1530; box-shadow: 0 60px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08); transform-origin: 50% 50%; }
+.browser .bar { height: 44px; background: #141d3d; display: flex; align-items: center; padding: 0 18px; gap: 9px; }
+.browser .bar i { width: 13px; height: 13px; border-radius: 50%; background: #ff5f57; }
+.browser .bar i:nth-child(2) { background: #febc2e; } .browser .bar i:nth-child(3) { background: #28c840; }
+.browser .bar .url { margin-left: 22px; flex: 0 0 auto; width: 520px; height: 28px; border-radius: 8px; background: rgba(255,255,255,.07); font-family: 'JBM'; font-size: 15px; color: rgba(255,255,255,.65); display: flex; align-items: center; padding-left: 14px; letter-spacing: .02em; }
+.browser .vp { position: relative; width: 1100px; height: 605px; overflow: hidden; background: #fff; }
+.browser .vp img { position: absolute; left: 0; top: 0; width: 100%; }
+.tile { position: absolute; left: 260px; top: 50px; width: 600px; height: 600px; border-radius: 40px; overflow: visible; }
+.tile img { width: 100%; height: 100%; border-radius: 40px; box-shadow: 0 60px 120px rgba(0,0,0,.6); }
+.tile .rp { position: absolute; left: 50%; top: 50%; width: 600px; height: 600px; margin: -300px 0 0 -300px; border-radius: 50%; border: 3px solid rgba(255,107,74,.8); }
+#s5 .partB { position: absolute; inset: 0; visibility: hidden; }
+#s5 .wall { position: absolute; left: 960px; top: 540px; width: 0; height: 0; transform-style: preserve-3d; }
+#s5 .wallInner { position: absolute; left: -1700px; top: -1500px; width: 3400px; height: 3000px; display: flex; gap: 40px; transform: rotateX(48deg) rotateZ(-32deg); transform-origin: 50% 50%; }
+#s5 .col { width: 620px; display: flex; flex-direction: column; gap: 40px; }
+#s5 .col .sh { width: 620px; height: 380px; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(0,0,0,.5); flex: 0 0 auto; }
+#s5 .col .sh img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+#s5 .col .sh.lg { background: #0b1330; display: flex; align-items: center; justify-content: center; }
+#s5 .col .sh.lg img { width: 300px; height: 300px; object-fit: contain; border-radius: 30px; }
+#s5 .wallshade { position: absolute; inset: 0; background: radial-gradient(70% 70% at 50% 50%, rgba(7,15,38,.82) 0%, rgba(7,15,38,.55) 60%, rgba(7,15,38,.9) 100%); }
+#s5 .wtxt { position: absolute; left: 0; width: 1920px; text-align: center; font-weight: 800; letter-spacing: -.045em; }
+#s5 .wt1 { top: 330px; font-size: 140px; line-height: 1.02; }
+#s5 .wt2 { top: 640px; font-size: 64px; letter-spacing: .02em; }
+#s5 .partC { position: absolute; inset: 0; visibility: hidden; }
+.cut { position: absolute; inset: 0; visibility: hidden; overflow: hidden; }
+.cut .ghost { position: absolute; left: 80px; top: 30px; font-size: 300px; font-weight: 800; letter-spacing: -.06em; white-space: nowrap; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,.14); line-height: 1; }
+.cut .frame { position: absolute; left: 260px; top: 170px; width: 1400px; height: 790px; border-radius: 22px; overflow: hidden; box-shadow: 0 60px 140px rgba(0,0,0,.55); background: #fff; }
+.cut .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.cut .frame.lg { background: transparent; box-shadow: none; display: flex; align-items: center; justify-content: center; }
+.cut .frame.lg img { width: 640px; height: 640px; object-fit: contain; border-radius: 48px; box-shadow: 0 60px 140px rgba(0,0,0,.55); }
+.cut .lbl { position: absolute; left: 260px; top: 990px; font-size: 22px; color: rgba(255,255,255,.85); }
+.cut .lbl b { color: var(--amber); font-weight: 500; }
+
+/* ---------- S6 ---------- */
+#s6 { background: var(--cloud); color: var(--navy); }
+#s6 .hd { position: absolute; left: 0; top: 330px; width: 1920px; text-align: center; transform-origin: 50% 0; }
+#s6 .hd .t { font-size: 120px; font-weight: 800; letter-spacing: -.045em; line-height: 1.05; }
+#s6 .pill { display: inline-flex; align-items: center; gap: 20px; margin-top: 26px; padding: 6px 54px 18px; border-radius: 140px; background: var(--dawn); color: var(--navy); font-size: 190px; font-weight: 800; letter-spacing: -.05em; line-height: 1; }
+#s6 .pill svg { width: 150px; height: 150px; margin-top: 18px; }
+#s6 .eb { left: 160px; top: 150px; font-size: 22px; color: var(--slate); }
+#s6 .track { left: 160px; top: 560px; width: 1600px; height: 4px; background: var(--mist); border-radius: 4px; }
+#s6 .track .fill { position: absolute; inset: 0; background: var(--dawn); border-radius: 4px; transform-origin: 0 50%; transform: scaleX(0); }
+#s6 .step { position: absolute; top: 380px; width: 470px; }
+#s6 .step .ico { width: 84px; height: 84px; }
+#s6 .step .ico * { stroke: var(--navy); stroke-width: 1.7; }
+#s6 .step .dot { position: absolute; left: 0; top: 170px; width: 22px; height: 22px; border-radius: 50%; background: var(--mist); }
+#s6 .step .ping { position: absolute; left: -29px; top: 141px; width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--amber); opacity: 0; }
+#s6 .step .num { position: absolute; top: 230px; font-size: 20px; color: var(--slate); }
+#s6 .step h4 { position: absolute; top: 268px; font-size: 44px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; width: 460px; }
+#s6 .step p { position: absolute; top: 380px; font-size: 23px; line-height: 1.5; color: var(--slate); width: 440px; }
+#s6 .badge { position: absolute; left: 1290px; top: 300px; font-size: 18px; color: var(--navy); background: var(--amber); padding: 9px 16px; border-radius: 8px; white-space: nowrap; }
+#s6 .spin { position: absolute; left: 1328px; top: 371px; width: 104px; height: 104px; }
+
+/* ---------- S7 ---------- */
+#s7 { background: radial-gradient(120% 90% at 50% 110%, #1b2e66 0%, #0E1B3D 45%, #08112A 100%); }
+#s7 .sunclip { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+#s7 .sun { position: absolute; left: 260px; top: 1080px; width: 1400px; }
+#s7 .glow { position: absolute; left: 160px; top: 640px; width: 1600px; height: 1100px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,150,60,.5), rgba(255,107,74,.15) 50%, rgba(255,107,74,0) 80%); }
+#s7 .lk { left: 510px; top: 120px; width: 900px; height: 225px; }
+#s7 .tag { position: absolute; left: 0; top: 380px; width: 1920px; text-align: center; font-size: 104px; font-weight: 800; letter-spacing: -.04em; }
+#s7 .next { position: absolute; left: 0; top: 520px; width: 1920px; text-align: center; font-size: 40px; font-weight: 600; color: rgba(255,255,255,.85); }
+#s7 .cta { position: absolute; left: 0; top: 592px; width: 1920px; display: flex; justify-content: center; align-items: center; gap: 36px; }
+#s7 .btn { background: var(--dawn); color: var(--navy); font-weight: 700; font-size: 28px; padding: 18px 34px; border-radius: 10px; display: flex; gap: 14px; align-items: center; }
+#s7 .ct { font-size: 22px; color: rgba(255,255,255,.75); }
+
+/* ---------- HUD ---------- */
+#hud { position: absolute; inset: 0; z-index: 60; pointer-events: none; font-size: 16px; color: rgba(255,255,255,.55); }
+#hud.light { color: rgba(14,27,61,.55); }
+#hud .c { position: absolute; width: 26px; height: 26px; border-color: currentColor; border-style: solid; opacity: .8; }
+#hud .tl { left: 48px; top: 48px; border-width: 2px 0 0 2px; } #hud .tr { right: 48px; top: 48px; border-width: 2px 2px 0 0; }
+#hud .bl { left: 48px; bottom: 48px; border-width: 0 0 2px 2px; } #hud .br { right: 48px; bottom: 48px; border-width: 0 2px 2px 0; }
+#hud .t1 { position: absolute; left: 92px; top: 52px; } #hud .t2 { position: absolute; right: 92px; top: 52px; text-align: right; }
+#hud .t3 { position: absolute; left: 92px; bottom: 52px; } #hud .t4 { position: absolute; right: 92px; bottom: 52px; text-align: right; }
+#hud .t2 b { color: var(--amber); font-weight: 500; }
+#hud.light .t2 b { color: var(--coral); }
+#flash { position: absolute; inset: 0; z-index: 50; background: radial-gradient(circle at 50% 60%, #fff 0%, #FFD58A 40%, #FFB020 100%); opacity: 0; pointer-events: none; }
+#black { position: absolute; inset: 0; z-index: 70; background: #000; opacity: 0; }
+#grain { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: 65; opacity: .07; mix-blend-mode: overlay; pointer-events: none; image-rendering: pixelated; }
+#vig { position: absolute; inset: 0; z-index: 64; pointer-events: none; background: radial-gradient(130% 120% at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.35) 100%); }
+canvas.fx { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1: cold open -->
+  <section class="scene" id="s1">
+    <div class="glow"></div>
+    <div class="sunclip"><div class="rays"></div><div class="sun" data-sun></div></div>
+    <div class="reflect"><div data-sun2></div></div>
+    <div class="line"></div>
+    <canvas class="fx" id="fx1" width="1920" height="1080"></canvas>
+    <h1 class="l1" data-split>Every great product</h1>
+    <h1 class="l2" data-split>starts with a little <span class="dawn-text">hope.</span></h1>
+  </section>
+
+  <!-- S2: who we are -->
+  <section class="scene" id="s2">
+    <div class="gridlines"></div>
+    <div class="abs island"><img src="a/Negros.webp"></div>
+    <div class="abs pin"><div class="ring"></div><div class="ring"></div><div class="dot"></div><div class="tag mono">Bacolod City</div></div>
+    <div class="lockup lk" id="lk2"></div>
+    <div class="abs copy">
+      <div data-split>A custom software studio</div>
+      <div data-split>from <span class="amb">Bacolod City,</span></div>
+      <div data-split class="amb">Philippines.</div>
+    </div>
+    <div class="abs coords mono"><span id="lat">10.6765</span>° N &nbsp;·&nbsp; <span id="lon">122.9509</span>° E &nbsp;·&nbsp; Negros Island</div>
+    <div class="abs team"><div class="avs"><img src="a/jeremiah.webp"><img src="a/wenard.webp"></div><span>Founded by Jeremiah Pantaras &amp; Wenard Roy Barrera</span></div>
+  </section>
+
+  <!-- S3: mission -->
+  <section class="scene" id="s3">
+    <div class="abs deco" data-symbol-navy></div>
+    <div class="abs eb mono" data-split>02 — Our mission</div>
+    <div class="abs lead" data-split>Our mission is simple.</div>
+    <div class="abs slot">
+      <div class="big" id="bw1" data-split>Reliable.</div>
+      <div class="big" id="bw2" data-split>Human&#8209;centred.</div>
+      <div class="big" id="bw3" data-split>Move forward</div>
+      <div class="big" id="bw4" data-split>with <span class="dawn-text">confidence.</span></div>
+    </div>
+    <svg class="abs arrow" viewBox="0 0 420 110" id="arr3"><defs><linearGradient id="ag3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF6B4A"/><stop offset="1" stop-color="#FFB020"/></linearGradient></defs>
+      <path d="M10 55 H380 M320 12 L392 55 L320 98" fill="none" stroke="url(#ag3)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+    <div class="abs rule"><i></i></div>
+    <div class="abs sub" id="sub3" data-split>Software that helps people and businesses move forward.</div>
+  </section>
+
+  <!-- S3b: vision -->
+  <section class="scene" id="s3b">
+    <div class="abs sunbg" data-sunbg></div>
+    <div class="abs hz"></div>
+    <div class="abs eb mono" data-split>03 — Our vision</div>
+    <div class="abs lead" data-split>Technology as a source of</div>
+    <div class="abs opt"><span id="optw">optimism</span></div>
+    <div class="abs not" data-split>not anxiety.</div>
+    <div class="abs strike"></div>
+  </section>
+
+  <!-- S4: services -->
+  <section class="scene" id="s4">
+    <div class="grid"></div><div class="vign"></div>
+    <div class="abs eb mono" data-split>04 — What we do</div>
+    <div class="abs ttl" data-split>Services built around how you work.</div>
+    <div class="abs cards" id="cards"></div>
+    <div class="abs ticker"><div class="tt mono" id="tick"></div></div>
+  </section>
+
+  <!-- S5: work -->
+  <section class="scene" id="s5">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="partA" id="pA">
+      <div class="stage3d" id="st3d"></div>
+    </div>
+    <div class="partB" id="pB">
+      <div class="wall"><div class="wallInner" id="wall"></div></div>
+      <div class="wallshade"></div>
+      <div class="wtxt wt1" data-split>Products people<br>rely on,</div>
+      <div class="wtxt wt2 mono" data-split><span class="dawn-text">every single day.</span></div>
+    </div>
+    <div class="partC" id="pC"></div>
+  </section>
+
+  <!-- S6: process -->
+  <section class="scene" id="s6">
+    <div class="abs eb mono" data-split>06 — Process</div>
+    <div class="hd" id="hd6">
+      <div class="t" data-split>Here’s how we help you</div>
+      <div class="pill" id="pill"><span>go</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="#0E1B3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="abs track" id="track6"><div class="fill"></div></div>
+    <div id="steps6"></div>
+    <div class="badge mono" id="badge6">Ongoing support</div>
+  </section>
+
+  <!-- S7: end card -->
+  <section class="scene" id="s7">
+    <div class="glow"></div>
+    <div class="sunclip"><div class="sun" data-sun7></div></div>
+    <canvas class="fx" id="fx7" width="1920" height="1080"></canvas>
+    <div class="lockup lk" id="lk7"></div>
+    <div class="tag" data-split>Software built on <span class="dawn-text">hope.</span></div>
+    <div class="next" data-split>Let’s build what’s next.</div>
+    <div class="cta" id="cta7"><div class="btn">Start a project
+      <svg width="26" height="26" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="#0E1B3D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="ct mono">www.elpisoft.com</div><div class="ct mono">elpisoftph@gmail.com</div><div class="ct mono">(+63) 908 560 8811</div></div>
+  </section>
+
+  <div class="wipe" id="wipe1"></div>
+  <div id="flash"></div>
+  <div id="vig"></div>
+  <canvas id="grain" width="480" height="270"></canvas>
+  <div id="hud">
+    <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+    <div class="t1 mono">Elpisoft — Showreel ’26</div>
+    <div class="t2 mono" id="chap"><b>00</b> &nbsp;Intro</div>
+    <div class="t3 mono" id="tc">00:00:00:00</div>
+    <div class="t4 mono">Bacolod City · PH</div>
+  </div>
+  <div id="black"></div>
+</div>
+
+<script src="gsap.min.js"></script>
+<script src="CustomEase.min.js"></script>
+<script>
+gsap.registerPlugin(CustomEase);
+gsap.ticker.lagSmoothing(0);
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const SUN_D = 'M16 54 A44 44 0 0 1 104 54 Z';
+const BOWL_D = 'M16.17 63.83 A44 44 0 0 0 94.67 87.09 A7 7 0 0 0 83.64 78.47 A30 30 0 0 1 30.11 62.61 Z';
+let gid = 0;
+const grad = () => { const id = 'dg' + (gid++); return [id, `<linearGradient id="${id}" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF6B4A"/><stop offset="1" stop-color="#FFB020"/></linearGradient>`]; };
+function sunSVG() { const [id, g] = grad(); return `<svg viewBox="15 9 90 46" width="100%" style="display:block"><defs>${g}</defs><path d="${SUN_D}" fill="url(#${id})"/></svg>`; }
+
+// sunrise mark inside each sun container
+$$('[data-sun],[data-sun2],[data-sun7]').forEach(el => el.innerHTML = sunSVG());
+$('[data-sunbg]').innerHTML = sunSVG();
+$('[data-symbol-navy]').innerHTML = `<img src="a/elpisoft_symbol_full-color.svg" style="width:100%">`;
+
+// Official lockup: master SVG via <img>, with the symbol overlaid from master geometry so its two pieces can
+// make their entrance (sun rises from behind the horizon, bowl settles) exactly over the lockup's own symbol.
+function buildLockup(el) {
+  const W = el.offsetWidth, s = W / 507.79;
+  const [id, g] = grad();
+  el.innerHTML = `<img src="a/elpisoft_horizontal_reversed.svg">
+   <svg class="sym" viewBox="14.59 8.59 90.82 96.82" style="left:${(16.05 - 10.11) * s}px;top:${(9.45 - 3.61) * s}px;width:${90.82 * 1.1 * s}px;height:${96.82 * 1.1 * s}px">
+    <defs>${g}<clipPath id="c${id}"><rect x="0" y="0" width="120" height="54"/></clipPath></defs>
+    <g clip-path="url(#c${id})"><g class="sunp"><path d="${SUN_D}" fill="url(#${id})"/></g></g>
+    <g class="bowlp"><path d="${BOWL_D}" fill="#FFFFFF"/></g></svg>`;
+  const img = $('img', el);
+  img.style.clipPath = 'inset(-5% 78% -5% 22%)';
+  return { img, sun: $('.sunp', el), bowl: $('.bowlp', el) };
+}
+
+// word splitter: wraps each word in a mask
+function split(el) {
+  const walk = (node) => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const m = document.createElement('span'); m.className = 'm';
+          const w = document.createElement('span'); w.className = 'w'; w.textContent = part;
+          m.appendChild(w); frag.appendChild(m);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+        if (n.classList.contains('dawn-text')) {
+          // keep gradient per word
+          const txt = n.textContent; const parts = txt.split(/(\s+)/);
+          const frag = document.createDocumentFragment();
+          parts.forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            const m = document.createElement('span'); m.className = 'm';
+            const w = document.createElement('span'); w.className = 'w dawn-text'; w.textContent = part;
+            m.appendChild(w); frag.appendChild(m);
+          });
+          n.replaceWith(frag);
+        } else walk(n);
+      }
+    });
+  };
+  walk(el);
+  return $$('.w', el);
+}
+const W = {};
+$$('[data-split]').forEach((el, i) => { el._w = split(el); });
+const words = (sel) => $(sel)._w;
+
+// ---------- build S4 cards ----------
+const SERVICES = [
+  { n: '01', t: 'Custom software', d: ['Internal systems', 'Dashboards and reporting', 'Platforms and integrations'],
+    ico: '<polyline points="16 18 22 12 16 6" pathLength="1"/><polyline points="8 6 2 12 8 18" pathLength="1"/><line x1="14" y1="4" x2="10" y2="20" pathLength="1"/>' },
+  { n: '02', t: 'Web applications', d: ['Web apps and portals', 'Marketing and product sites', 'Admin consoles'],
+    ico: '<rect x="2" y="3" width="20" height="18" rx="2" pathLength="1"/><line x1="2" y1="8" x2="22" y2="8" pathLength="1"/><rect x="6" y="11.5" width="7" height="6" rx="1" pathLength="1"/><line x1="15.5" y1="12.5" x2="18.5" y2="12.5" pathLength="1"/><line x1="15.5" y1="16" x2="18.5" y2="16" pathLength="1"/>' },
+  { n: '03', t: 'Mobile apps', d: ['Android and iOS apps', 'Cross-platform builds', 'Companion apps'],
+    ico: '<rect x="5" y="2" width="14" height="20" rx="2.5" pathLength="1"/><line x1="10" y1="5" x2="14" y2="5" pathLength="1"/><line x1="12" y1="18.5" x2="12.01" y2="18.5" pathLength="1"/>' },
+  { n: '04', t: 'Business automation', d: ['Workflow automation', 'Systems integration', 'Document and data processing'],
+    ico: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" pathLength="1"/>' },
+];
+$('#cards').innerHTML = SERVICES.map((s, i) => `<div class="card" style="left:${i * 410}px">
+  <div class="hl"></div><div class="n mono">${s.n}</div>
+  <svg class="ico" viewBox="0 0 24 24">${s.ico}</svg>
+  <h3>${s.t}</h3><ul>${s.d.map(x => `<li>${x}</li>`).join('')}</ul><div class="bar"></div></div>`).join('');
+$('#tick').innerHTML = Array(6).fill('<b>+</b>&nbsp; UI/UX and product design &nbsp;&nbsp;&nbsp; <b>+</b>&nbsp; Maintenance and support &nbsp;&nbsp;&nbsp; <b>+</b>&nbsp; Cloud and DevOps &nbsp;&nbsp;&nbsp; ').join('');
+
+// ---------- build S5 ----------
+const FEAT = [
+  { k: 'recivo', nm: 'Recivo', tag: 'Web · Automation', ds: 'Receipt generation for online sellers and business owners.', url: 'recivo.elpisoft.com', img: 'a/recivo.png', crop: 0 },
+  { k: 'avendro', nm: 'Avendro', tag: 'Software · Web', ds: 'A lending management system for lending institutions.', url: 'avendrobcd.onrender.com', img: 'a/avendro.webp', crop: 36 / 1600 },
+  { k: 'epuno', nm: 'ePuno', tag: 'Web · FinTech', ds: 'A personal budget tracker for financial empowerment.', url: 'epuno.elpisoft.com', img: 'a/epuno.png', crop: 0 },
+  { k: 'tabang', nm: 'Tabang Negros', tag: 'Web · Public safety', ds: 'Real-time emergency help requests for Negros Island.', tile: 'a/tabang.webp' },
+];
+const st3d = $('#st3d');
+FEAT.forEach((f, i) => {
+  const d = document.createElement('div');
+  if (f.tile) { d.className = 'tile'; d.innerHTML = `<div class="rp"></div><div class="rp"></div><div class="rp"></div><img src="${f.tile}">`; }
+  else {
+    d.className = 'browser';
+    d.innerHTML = `<div class="bar"><i></i><i></i><i></i><div class="url">${f.url}</div></div><div class="vp"><img src="${f.img}" style="top:${-f.crop * 1100}px"></div>`;
+  }
+  d.id = 'dev' + i; st3d.appendChild(d);
+  const inf = document.createElement('div'); inf.className = 'info'; inf.id = 'inf' + i;
+  inf.innerHTML = `<div class="ix mono">05 — Selected work</div><div class="tag mono" data-s>${f.tag}</div><div class="nm" data-s>${f.nm}</div><div class="ds" data-s>${f.ds}</div>`;
+  $('#pA').appendChild(inf);
+  $$('[data-s]', inf).forEach(e => e._w = split(e));
+});
+const WALLIMG = ['recivo.png', 'avendro.webp', 'epuno.png', 'incognito.png', 'sms.png', 'pos.webp', 'tabang.webp|lg', 'satoru.webp|lg', 'sentinels.webp|lg'];
+$('#wall').innerHTML = Array.from({ length: 6 }, (_, c) => `<div class="col">${Array.from({ length: 9 }, (_, r) => {
+  const [f, lg] = WALLIMG[(c * 4 + r * 2) % WALLIMG.length].split('|'); return `<div class="sh ${lg || ''}"><img src="a/${f}"></div>`; }).join('')}</div>`).join('');
+const CUTS = [
+  { nm: 'Incognito', tag: 'Web · Civic engagement', img: 'incognito.png', bg: '#0b0b0f' },
+  { nm: 'SMS Gateway', tag: 'Mobile · Automation', img: 'sms.png', bg: '#2F5DE6' },
+  { nm: 'Point of Sale', tag: 'Software · Retail', img: 'pos.webp', bg: '#0E1B3D' },
+  { nm: 'Sentinels', tag: 'Mobile · Game', img: 'sentinels.webp', lg: 1, bg: 'linear-gradient(45deg,#FF6B4A,#FFB020)' },
+  { nm: 'Satoru', tag: 'Web · Document AI', img: 'satoru.webp', lg: 1, bg: '#08112A' },
+  { nm: 'Recivo', tag: 'Web · Automation', img: 'recivo.png', bg: '#2F5DE6' },
+  { nm: 'ePuno', tag: 'Web · FinTech', img: 'epuno.png', bg: '#0E1B3D' },
+  { nm: 'Avendro', tag: 'Software · Web', img: 'avendro.webp', bg: 'linear-gradient(45deg,#FF6B4A,#FFB020)' },
+];
+$('#pC').innerHTML = CUTS.map((c, i) => `<div class="cut" id="cut${i}" style="background:${c.bg}">
+  <div class="ghost">${c.nm}</div>
+  <div class="frame ${c.lg ? 'lg' : ''}"><img src="a/${c.img}" ${c.img === 'avendro.webp' ? 'style="object-position:50% 30%"' : ''}></div>
+  <div class="lbl mono"><b>${String(i + 1).padStart(2, '0')}/08</b> &nbsp; ${c.nm} &nbsp;·&nbsp; ${c.tag}</div></div>`).join('');
+
+// ---------- build S6 steps ----------
+const STEPS = [
+  { n: '01', t: 'Discovery and strategy', d: 'We understand your goals and the problem behind them, then agree a focused, practical roadmap.', x: 160,
+    ico: '<circle cx="11" cy="11" r="7.5" pathLength="1"/><line x1="21" y1="21" x2="16.4" y2="16.4" pathLength="1"/>' },
+  { n: '02', t: 'Development and partnership', d: 'We build in short iterations alongside your team, so you see progress and can steer as we go.', x: 720,
+    ico: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" pathLength="1"/><circle cx="9" cy="7" r="4" pathLength="1"/><path d="M22 21v-2a4 4 0 0 0-3-3.87" pathLength="1"/><path d="M16 3.13a4 4 0 0 1 0 7.75" pathLength="1"/>' },
+  { n: '03', t: 'Launch and ongoing support', d: 'A careful deployment, then we stay on to monitor, maintain and improve what we shipped.', x: 1280,
+    ico: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" pathLength="1"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" pathLength="1"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" pathLength="1"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" pathLength="1"/>' },
+];
+$('#steps6').innerHTML = STEPS.map((s, i) => `<div class="step" id="step${i}" style="left:${s.x}px">
+  <svg class="ico" viewBox="0 0 24 24">${s.ico}</svg><div class="ping"></div><div class="dot"></div>
+  <div class="num mono">${s.n}</div><h4>${s.t}</h4><p>${s.d}</p></div>`).join('');
+
+const LK2 = buildLockup($('#lk2'));
+const LK7 = buildLockup($('#lk7'));
+
+// ======================================================================
+// MASTER TIMELINE (seconds). Cut points sit on 120 BPM bar lines.
+// ======================================================================
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const show = (sel, a, b) => { tl.set(sel, { visibility: 'visible' }, a); if (b != null) tl.set(sel, { visibility: 'hidden' }, b); };
+const rise = (ws, at, opt = {}) => tl.fromTo(ws, { yPercent: 115, rotate: opt.rot ?? 4 }, { yPercent: 0, rotate: 0, duration: opt.dur ?? .8, ease: opt.ease ?? 'expo.out', stagger: opt.stagger ?? .06 }, at);
+const sink = (ws, at, opt = {}) => tl.to(ws, { yPercent: -115, duration: opt.dur ?? .45, ease: 'power3.in', stagger: opt.stagger ?? .025 }, at);
+const draw = (svgEl, at, dur = .7, stagger = .08) => {
+  const root = typeof svgEl === 'string' ? $(svgEl) : svgEl, els = $$('path,polyline,line,circle,rect,polygon', root);
+  tl.fromTo(root, { opacity: 0 }, { opacity: 1, duration: .01 }, at);
+  tl.fromTo(els, { opacity: 0 }, { opacity: 1, duration: .06, stagger }, at);  // no pen-tip dots before a stroke starts
+  return tl.fromTo(els, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: dur, ease: 'power2.inOut', stagger }, at);
+};
+
+// ---------------- S1 (0 – 6) ----------------
+show('#s1', 0, 6.0);
+tl.fromTo('#s1 .line', { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: 'expo.inOut' }, 0.15);
+tl.fromTo('#s1 .sun', { y: 600 }, { y: 300, duration: 4.4, ease: 'power2.out' }, 0.9);
+tl.fromTo('#s1 .reflect > div', { y: -600 }, { y: -300, duration: 4.4, ease: 'power2.out' }, 0.9);
+tl.fromTo('#s1 .glow', { opacity: 0, y: 260 }, { opacity: 1, y: 60, duration: 4.4, ease: 'power2.out' }, 0.9);
+tl.fromTo('#s1 .rays', { opacity: 0, rotate: -6 }, { opacity: 1, rotate: 6, duration: 5, ease: 'none' }, 1.0);
+rise(words('#s1 .l1'), 1.05, { stagger: .11, dur: 1.0 });
+rise(words('#s1 .l2'), 3.3, { stagger: .1, dur: 1.0 });
+tl.fromTo(words('#s1 .l2').slice(-1), { scale: 1 }, { scale: 1.08, duration: 1.2, ease: 'sine.inOut', transformOrigin: '0% 80%' }, 4.2);
+// push into the sun
+tl.to('#s1 h1', { y: -60, opacity: 0, filter: 'blur(14px)', duration: .55, ease: 'power2.in' }, 5.35);
+tl.to('#s1 .sun', { y: 0, scale: 2.6, duration: .7, ease: 'power3.in', transformOrigin: '50% 100%' }, 5.3);
+tl.to('#s1 .glow', { scale: 2.2, opacity: 1, duration: .7, ease: 'power3.in' }, 5.3);
+tl.fromTo('#flash', { opacity: 0 }, { opacity: 1, duration: .32, ease: 'power2.in' }, 5.7);
+tl.to('#flash', { opacity: 0, duration: .7, ease: 'power2.out' }, 6.02);
+
+// ---------------- S2 (6 – 12) ----------------
+show('#s2', 6.0, 12.0);
+tl.fromTo('#lk2', { x: 429 * 1, y: -20, scale: 1.25 }, { x: 0, y: 0, scale: 1, duration: 1.1, ease: 'expo.inOut' }, 6.7);
+tl.fromTo(LK2.sun, { y: 46 }, { y: 0, duration: .9, ease: 'power3.out' }, 6.05);
+tl.fromTo(LK2.bowl, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'power3.out' }, 6.35);
+tl.fromTo(LK2.img, { clipPath: 'inset(-5% 78% -5% 22%)' }, { clipPath: 'inset(-5% 0% -5% 22%)', duration: 1.0, ease: 'expo.inOut' }, 6.95);
+// logo docks top-left
+tl.to('#lk2', { x: 160 - 410, y: 150 - 402, scale: .42, duration: 1.0, ease: 'expo.inOut' }, 7.95);
+rise(words('#s2 .copy div:nth-child(1)'), 8.22, { stagger: .07 });
+rise(words('#s2 .copy div:nth-child(2)'), 9.45, { stagger: .1 });
+rise(words('#s2 .copy div:nth-child(3)'), 10.2, { stagger: .1 });
+tl.fromTo('#s2 .gridlines', { opacity: 0 }, { opacity: .25, duration: 1 }, 8.3);
+tl.fromTo('#s2 .island', { clipPath: 'inset(100% 0% 0% 0%)', y: 40, scale: 1.08 }, { clipPath: 'inset(0% 0% 0% 0%)', y: 0, scale: 1, duration: 1.3, ease: 'expo.out' }, 8.4);
+tl.to('#s2 .island', { scale: 1.05, duration: 3, ease: 'none' }, 9.7);
+tl.fromTo('#s2 .pin', { scale: 0, y: -80 }, { scale: 1, y: 0, duration: .6, ease: 'back.out(2.2)' }, 9.72);
+tl.fromTo('#s2 .pin .ring', { scale: .2, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 1.4, ease: 'power2.out', stagger: .6 }, 9.8);
+tl.fromTo('#s2 .pin .tag', { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: .5 }, 10.0);
+tl.fromTo('#s2 .coords', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .6 }, 9.9);
+tl.fromTo('#s2 .team', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .6 }, 10.6);
+// wipe out
+tl.set('#wipe1', { visibility: 'visible' }, 11.45);
+tl.fromTo('#wipe1', { x: -3100 }, { x: 2300, duration: 1.1, ease: 'power3.inOut' }, 11.45);
+tl.set('#wipe1', { visibility: 'hidden' }, 12.6);
+
+// ---------------- S3 (12 – 19.4) ----------------
+show('#s3', 12.0, 19.75);
+tl.fromTo('#s3 .deco', { opacity: 0, y: 80 }, { opacity: .09, y: 0, duration: 2 }, 12.1);
+tl.to('#s3 .deco', { y: -60, duration: 7, ease: 'none' }, 12.5);
+rise(words('#s3 .eb'), 12.3, { stagger: .04 });
+rise(words('#s3 .lead'), 12.55, { stagger: .07 });
+const bw = ['#bw1', '#bw2', '#bw3', '#bw4'].map(words);
+rise(bw[0], 14.42, { dur: .7, rot: 0 });
+tl.fromTo('#s3 .rule i', { scaleX: 0 }, { scaleX: .25, duration: .7, ease: 'expo.out' }, 14.45);
+sink(bw[0], 15.2);
+rise(bw[1], 15.38, { dur: .7, stagger: .05, rot: 0 });
+tl.to('#s3 .rule i', { scaleX: .5, duration: .7, ease: 'expo.out' }, 15.4);
+rise(words('#sub3'), 16.1, { stagger: .05, dur: .7 });
+sink(bw[1], 17.0);
+rise(bw[2], 17.2, { dur: .7, rot: 0 });
+draw('#arr3', 17.45, .7);
+tl.fromTo('#arr3', { x: -60 }, { x: 40, duration: 1.2, ease: 'expo.out' }, 17.45);
+tl.to('#s3 .rule i', { scaleX: .78, duration: .7, ease: 'expo.out' }, 17.25);
+sink(bw[2], 18.0); tl.to('#arr3', { x: 400, opacity: 0, duration: .45, ease: 'power3.in' }, 18.0);
+rise(bw[3], 18.2, { dur: .7, stagger: .08, rot: 0 });
+tl.to('#s3 .rule i', { scaleX: 1, duration: .8, ease: 'expo.out' }, 18.25);
+
+// ---------------- S3b (19.4 – 24) ----------------
+show('#s3b', 19.3, 24.05);
+tl.fromTo('#s3b', { clipPath: 'circle(0% at 1400px 620px)' }, { clipPath: 'circle(140% at 1400px 620px)', duration: .9, ease: 'expo.inOut' }, 19.3);
+tl.fromTo('#s3b .sunbg', { y: 260, opacity: 0 }, { y: 0, opacity: .9, duration: 3.2, ease: 'power2.out' }, 19.6);
+rise(words('#s3b .eb'), 19.55, { stagger: .04 });
+rise(words('#s3b .lead'), 19.7, { stagger: .08 });
+const optLetters = (() => { const e = $('#optw'); const t = e.textContent; e.innerHTML = t.split('').map(c => `<span class="w dawn-text" style="background-size:${t.length * 100}% 100%">${c}</span>`).join(''); const ws = $$('.w', e); ws.forEach((w, i) => w.style.backgroundPosition = `${(i / (t.length - 1)) * 100}% 0`); return ws; })();
+tl.fromTo(optLetters, { yPercent: 120 }, { yPercent: 0, duration: .9, ease: 'expo.out', stagger: .045 }, 21.0);
+tl.fromTo('#s3b .opt', { scale: 1 }, { scale: 1.04, duration: 2.5, ease: 'none', transformOrigin: '0% 100%' }, 21.2);
+rise(words('#s3b .not'), 22.6, { stagger: .1 });
+tl.fromTo('#s3b .strike', { scaleX: 0 }, { scaleX: 1, duration: .35, ease: 'power4.out' }, 23.05);
+tl.to('#s3b .not', { color: 'rgba(255,255,255,.38)', duration: .3 }, 23.1);
+tl.to('#s3b > *', { scale: 1.25, opacity: 0, filter: 'blur(10px)', duration: .45, ease: 'power3.in', transformOrigin: '50% 50%' }, 23.6);
+
+// ---------------- S4 (24 – 30) ----------------
+show('#s4', 24.0, 30.35);
+tl.fromTo('#s4 .grid', { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 1.2, ease: 'expo.out' }, 24.0);
+tl.fromTo('#s4 .grid', { x: 0 }, { x: -80, duration: 6, ease: 'none' }, 24.0);
+rise(words('#s4 .eb'), 24.05, { stagger: .04 });
+rise(words('#s4 .ttl'), 24.1, { stagger: .05 });
+const HITS = [24.42, 25.88, 27.37, 28.57];
+$$('.card').forEach((c, i) => {
+  const h = HITS[i];
+  tl.fromTo(c, { y: 160, rotateX: -40, opacity: 0 }, { y: 0, rotateX: 0, opacity: 1, duration: .75, ease: 'expo.out' }, h - .12);
+  draw($('.ico', c), h, .7, .07);
+  tl.fromTo($('.bar', c), { scaleX: 0 }, { scaleX: 1, duration: .6, ease: 'expo.out' }, h);
+  tl.fromTo($('.hl', c), { opacity: 0 }, { opacity: 1, duration: .15 }, h);
+  tl.fromTo(c, { scale: 1 }, { scale: 1.035, y: -14, duration: .3, ease: 'power2.out' }, h + .05);
+  if (i < 3) { tl.to($('.hl', c), { opacity: 0, duration: .4 }, HITS[i + 1]); tl.to(c, { scale: 1, y: 0, duration: .4 }, HITS[i + 1]); }
+});
+tl.to($$('.card .hl'), { opacity: 1, duration: .25 }, 29.3);
+tl.to($$('.card'), { scale: 1.02, y: -8, duration: .3, ease: 'power2.out' }, 29.3);
+tl.fromTo('#s4 .ticker', { opacity: 0 }, { opacity: 1, duration: .6 }, 25.0);
+tl.fromTo('#tick', { x: 0 }, { x: -900, duration: 6, ease: 'none' }, 24.0);
+// whip pan out
+tl.to('#s4', { x: -1920, filter: 'blur(18px)', duration: .45, ease: 'power3.in' }, 29.9);
+
+// ---------------- S5 (30 – 42) ----------------
+show('#s5', 30.0, 42.25);
+tl.fromTo('#s5', { x: 1920, filter: 'blur(18px)' }, { x: 0, filter: 'blur(0px)', duration: .55, ease: 'expo.out' }, 30.1);
+tl.fromTo('#s5 .b1', { x: 0, y: 0 }, { x: -300, y: 120, duration: 12, ease: 'sine.inOut' }, 30);
+tl.fromTo('#s5 .b2', { x: 0, y: 0 }, { x: -500, y: -200, duration: 12, ease: 'sine.inOut' }, 30);
+const FT = [30.45, 31.72, 32.6, 33.5];
+FEAT.forEach((f, i) => {
+  const at = FT[i], dev = '#dev' + i, inf = '#inf' + i;
+  tl.set([dev, inf], { visibility: 'visible' }, at - .3);
+  tl.set([dev, inf], { visibility: 'hidden' }, i < 3 ? FT[i + 1] + .45 : 34.75);
+  tl.fromTo(dev, { x: 900, rotateY: -48, rotateX: 8, opacity: 0, filter: 'blur(12px)' }, { x: 0, rotateY: -12, rotateX: 4, opacity: 1, filter: 'blur(0px)', duration: .8, ease: 'expo.out' }, at - .12);
+  tl.to(dev, { rotateY: -6, x: -20, duration: 1.4, ease: 'none' }, at + .68);
+  const iw = $$('[data-s]', $(inf)).flatMap(e => e._w);
+  rise(iw, at - .05, { stagger: .025, dur: .7 });
+  tl.fromTo($('.ix', $(inf)), { opacity: 0 }, { opacity: 1, duration: .3 }, at);
+  if (f.tile) tl.fromTo($$('.rp', $(dev)), { scale: .9, opacity: .9 }, { scale: 1.9, opacity: 0, duration: 1.2, ease: 'power2.out', stagger: .35 }, at + .1);
+  if (i < 3) {
+    const nx = FT[i + 1];
+    tl.to(dev, { x: -900, rotateY: 40, opacity: 0, filter: 'blur(12px)', duration: .5, ease: 'power3.in' }, nx - .32);
+    sink(iw, nx - .3, { stagger: .01, dur: .3 });
+  } else {
+    tl.to(dev, { scale: 1.8, opacity: 0, filter: 'blur(14px)', duration: .45, ease: 'power3.in' }, 34.35);
+    sink(iw, 34.35, { stagger: .01, dur: .3 });
+  }
+});
+if ($('.browser .vp img')) $$('.browser .vp img').forEach((im, i) => tl.fromTo(im, { yPercent: 0 }, { yPercent: -10, duration: 1.6, ease: 'sine.inOut' }, FT[i] + .2));
+// part B: wall
+tl.set('#pB', { visibility: 'visible' }, 34.55); tl.set('#pB', { visibility: 'hidden' }, 37.55);
+tl.fromTo('#pB', { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: .9, ease: 'expo.out' }, 34.55);
+$$('#wall .col').forEach((c, i) => tl.fromTo(c, { y: i % 2 ? -900 : 0 }, { y: i % 2 ? -300 : -600, duration: 3.2, ease: 'none' }, 34.5));
+rise(words('#s5 .wt1'), 34.72, { stagger: .07, dur: .8 });
+rise(words('#s5 .wt2'), 36.45, { stagger: .1, dur: .7 });
+tl.to('#pB .wtxt', { scale: .9, opacity: 0, duration: .3, ease: 'power3.in' }, 37.25);
+// part C: beat cuts
+tl.set('#pC', { visibility: 'visible' }, 37.5);
+CUTS.forEach((c, i) => {
+  const at = 37.5 + i * .5, el = '#cut' + i;
+  tl.set(el, { visibility: 'visible' }, at); if (i < 7) tl.set(el, { visibility: 'hidden' }, at + .5);
+  tl.fromTo(el + ' .frame', { scale: 1.12, y: 30 }, { scale: 1, y: 0, duration: .5, ease: 'expo.out' }, at);
+  tl.fromTo(el + ' .ghost', { x: 120 }, { x: -60, duration: .5, ease: 'none' }, at);
+});
+tl.to('#cut7 .frame', { scale: 1.6, y: -60, filter: 'blur(10px)', duration: .45, ease: 'power3.in' }, 41.55);
+
+// ---------------- S6 (42 – 52) ----------------
+show('#s6', 41.65, 52.4);
+tl.fromTo('#s6', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .55, ease: 'expo.inOut' }, 41.65);
+rise(words('#hd6 .t'), 42.35, { stagger: .07, dur: .8 });
+tl.fromTo('#pill', { scale: 0, rotate: -6 }, { scale: 1, rotate: 0, duration: .8, ease: 'back.out(2)' }, 43.45);
+tl.fromTo('#pill svg', { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: .5, ease: 'expo.out' }, 43.65);
+tl.to('#pill svg', { x: 30, duration: .3, ease: 'power2.inOut', yoyo: true, repeat: 1 }, 44.1);
+tl.to('#hd6', { y: -250, scale: .42, duration: .9, ease: 'expo.inOut' }, 44.2);
+tl.fromTo('#s6 .eb', { opacity: 0 }, { opacity: 1, duration: .4 }, 44.5); rise(words('#s6 .eb'), 44.5, { stagger: .04 });
+tl.fromTo('#track6', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 1.0, ease: 'expo.inOut' }, 44.3);
+tl.fromTo('#s6 .step .dot', { opacity: 0 }, { opacity: 1, duration: .3, stagger: .15 }, 44.4);
+const SH = [44.74, 46.41, 48.78];
+const fillTo = [0.0075, 0.357, 0.707];
+STEPS.forEach((s, i) => {
+  const at = SH[i], el = '#step' + i;
+  tl.to('#track6 .fill', { scaleX: fillTo[i], duration: .5, ease: 'expo.out' }, at);
+  tl.fromTo(el + ' .dot', { scale: 1, backgroundColor: '#E4E1D9' }, { scale: 1.35, backgroundColor: '#FFB020', duration: .35, ease: 'back.out(3)' }, at);
+  tl.to(el + ' .dot', { scale: 1, duration: .3 }, at + .35);
+  tl.fromTo(el + ' .ping', { scale: .3, opacity: 1 }, { scale: 1.8, opacity: 0, duration: .9, ease: 'power2.out', immediateRender: false }, at);
+  draw($(el + ' .ico'), at + .02, .7, .07);
+  tl.fromTo([el + ' .num', el + ' h4', el + ' p'], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .07 }, at + .05);
+});
+tl.to('#track6 .fill', { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 50.0);
+tl.fromTo('#badge6', { scale: 0, y: 20 }, { scale: 1, y: 0, duration: .6, ease: 'back.out(2.5)' }, 50.1);
+tl.fromTo('#step2 .ico', { rotate: 0 }, { rotate: -8, y: -16, duration: 1.4, ease: 'sine.inOut' }, 50.2);
+// hand-off: navy horizon rises
+tl.to('#s6 > *', { y: -120, opacity: 0, duration: .5, ease: 'power3.in' }, 51.6);
+
+// ---------------- S7 (52 – 59) ----------------
+show('#s7', 51.75);
+tl.fromTo('#s7', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .4, ease: 'expo.inOut' }, 51.75);
+tl.fromTo('#s7 .sun', { y: 0 }, { y: -385, duration: 3.6, ease: 'power3.out' }, 52.0);
+tl.fromTo('#s7 .glow', { opacity: 0, y: 200 }, { opacity: 1, y: -40, duration: 3.6, ease: 'power3.out' }, 52.0);
+tl.fromTo(LK7.sun, { y: 46 }, { y: 0, duration: .9, ease: 'power3.out' }, 52.55);
+tl.fromTo(LK7.bowl, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: .7 }, 52.75);
+tl.fromTo('#lk7', { x: 340, scale: 1.1 }, { x: 0, scale: 1, duration: 1.0, ease: 'expo.inOut' }, 52.95);
+tl.fromTo(LK7.img, { clipPath: 'inset(-5% 78% -5% 22%)' }, { clipPath: 'inset(-5% 0% -5% 22%)', duration: 1.0, ease: 'expo.inOut' }, 53.15);
+rise(words('#s7 .tag'), 53.92, { stagger: .17, dur: .9 });
+rise(words('#s7 .next'), 55.92, { stagger: .09 });
+tl.fromTo('#cta7 > *', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .08 }, 56.3);
+tl.to('#black', { opacity: 1, duration: .8, ease: 'power1.in' }, 58.6);
+tl.set({}, {}, 59.4);
+
+// ---------------- HUD ----------------
+const CH = [[0, '00', 'Intro'], [6, '01', 'Who we are'], [12, '02', 'Mission'], [19.4, '03', 'Vision'], [24, '04', 'Services'], [30, '05', 'Work'], [42, '06', 'Process'], [52, '07', 'Hello']];
+const LIGHT = [[12.0, 19.5], [41.9, 51.9]];
+tl.fromTo('#hud', { opacity: 0 }, { opacity: 1, duration: 1 }, 0.4);
+tl.to('#hud', { opacity: 0, duration: .6 }, 58.0);
+
+// ---------------- canvas FX ----------------
+function rnd(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+const P = (() => { const r = rnd(7); return Array.from({ length: 140 }, () => ({ x: r() * 1920, y: r() * 1080, z: .3 + r() * .7, s: r() * 6.28, sp: 10 + r() * 30 })); })();
+function drawDust(cv, t, warmY, alphaMul) {
+  const c = cv.getContext('2d'); c.clearRect(0, 0, 1920, 1080);
+  for (const p of P) {
+    const y = ((p.y - t * p.sp * p.z) % 1080 + 1080) % 1080;
+    const x = p.x + Math.sin(t * .6 + p.s) * 18 * p.z;
+    const near = Math.max(0, 1 - Math.abs(y - warmY) / 600);
+    const a = (.15 + .55 * p.z) * (.4 + .6 * Math.abs(Math.sin(t * 1.3 + p.s))) * alphaMul;
+    c.fillStyle = near > .3 ? `rgba(255,${170 + 60 * (1 - near) | 0},90,${a})` : `rgba(220,230,255,${a * .7})`;
+    c.beginPath(); c.arc(x, y, 1 + 2.2 * p.z, 0, 6.283); c.fill();
+  }
+}
+const gcv = $('#grain'), gctx = gcv.getContext('2d'), gimg = gctx.createImageData(480, 270);
+function drawGrain(frame) {
+  const r = rnd(frame * 9973 + 1), d = gimg.data;
+  for (let i = 0; i < d.length; i += 4) { const v = r() * 255 | 0; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
+  gctx.putImageData(gimg, 0, 0);
+}
+const tc = $('#tc'), chap = $('#chap'), hud = $('#hud');
+function pad(n) { return String(n).padStart(2, '0'); }
+
+window.renderAt = function (t, fps = 30) {
+  tl.seek(t, false);
+  const frame = Math.round(t * fps);
+  if (t < 6.2) drawDust($('#fx1'), t, 700, Math.min(1, t / 1.5));
+  if (t > 51.7) drawDust($('#fx7'), t, 900, Math.min(1, (t - 51.7) / 1.5));
+  drawGrain(frame);
+  const f = frame % fps, s = Math.floor(t);
+  tc.textContent = `00:00:${pad(s)}:${pad(f)}`;
+  let c = CH[0]; for (const x of CH) if (t >= x[0]) c = x;
+  chap.innerHTML = `<b>${c[1]}</b> &nbsp;${c[2]}`;
+  hud.classList.toggle('light', LIGHT.some(([a, b]) => t >= a && t < b));
+  // live coordinates tick while the pin lands
+  if (t > 9.8 && t < 11) { const k = Math.min(1, (t - 9.8) / .9), e = 1 - Math.pow(1 - k, 3);
+    $('#lat').textContent = (10.6765 * e).toFixed(4); $('#lon').textContent = (122.9509 * e).toFixed(4); }
+  else if (t >= 11) { $('#lat').textContent = '10.6765'; $('#lon').textContent = '122.9509'; }
+  else { $('#lat').textContent = '0.0000'; $('#lon').textContent = '0.0000'; }
+};
+window.DURATION = 59.4;
+Promise.all([document.fonts.ready, ...$$('img').map(i => i.decode().catch(() => {}))]).then(() => { window.renderAt(0); window.READY = true; });
+</script>
+</body>
+</html>

@@ -11,10 +11,13 @@ import AboutPage from './pages/aboutPage'
 import WorkPage from './pages/workPage'
 import ServicesPage from './pages/servicesPage'
 import ServiceDetailPage from './pages/ServiceDetailPage'
+import ProjectDetailPage from './pages/ProjectDetailPage'
+import IndustriesPage from './pages/IndustriesPage'
 import ContactPage from './pages/contactPage'
 import PrivacyPage from './pages/PrivacyPage'
 import NotFoundPage from './pages/NotFoundPage'
 import { SERVICES, servicePath } from './data/services'
+import { CASE_STUDIES, projectPath } from './data/projects'
 import { ScrollTrigger } from './lib/gsap'
 import { markHydrated } from './lib/hydration'
 import { contactChannelFor, trackEvent } from './lib/analytics'
@@ -40,7 +43,11 @@ function AnimatedRoutes() {
           {SERVICES.map((service) => (
             <Route key={service.slug} path={servicePath(service)} element={<ServiceDetailPage service={service} />} />
           ))}
+          <Route path="/industries" element={<IndustriesPage />} />
           <Route path="/work" element={<WorkPage />} />
+          {CASE_STUDIES.map((project) => (
+            <Route key={project.slug} path={projectPath(project)} element={<ProjectDetailPage project={project} />} />
+          ))}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />

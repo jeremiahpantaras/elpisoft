@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Elpisoft services master</title>
+<style>
+@font-face { font-family: 'PJS'; src: url('a/pjs.woff2') format('woff2'); font-weight: 200 800; }
+@font-face { font-family: 'JBM'; src: url('a/jbm.woff2') format('woff2'); font-weight: 500; }
+:root {
+  --navy:#0E1B3D; --deep:#08112A; --amber:#FFB020; --coral:#FF6B4A; --blue:#2F5DE6;
+  --slate:#5A6377; --mist:#E4E1D9; --cloud:#F7F5F0;
+  --dawn: linear-gradient(45deg,#FF6B4A 0%,#FFB020 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 2160px; height: 2160px; overflow: hidden; }
+body { font-family: 'PJS', Arial, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+#master { position: relative; width: 2160px; height: 2160px; overflow: hidden; background: var(--cloud); }
+
+/* ---------- continuous layers (span tile seams) ---------- */
+.sky { position: absolute; left: 0; top: 0; width: 2160px; height: 1080px; background: linear-gradient(180deg, #08112A 0%, #0E1B3D 78%, #13234c 100%); }
+.grid { position: absolute; inset: 0; background-position: 45px 45px; background-size: 90px 90px; }
+.grid.dark { height: 1080px; background-image: linear-gradient(rgba(255,255,255,.045) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,.045) 1.5px, transparent 1.5px); }
+.grid.light { top: 1080px; height: 1080px; background-position: 45px -1035px; background-image: linear-gradient(rgba(14,27,61,.06) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(14,27,61,.06) 1.5px, transparent 1.5px); }
+/* the sun rises exactly on the horizon = the seam between top and bottom rows */
+.sun { position: absolute; left: 740px; top: 740px; width: 680px; height: 340px; }
+.reflect { position: absolute; left: 0; top: 1080px; width: 2160px; height: 200px; }
+.reflect i { position: absolute; height: 6px; border-radius: 6px; background: var(--dawn); }
+.flow { position: absolute; left: 0; top: 0; width: 2160px; height: 2160px; pointer-events: none; }
+
+/* ---------- shared tile system ---------- */
+.tile { position: absolute; width: 1080px; height: 1080px; }
+.t1 { left: 0; top: 0; } .t2 { left: 1080px; top: 0; } .t3 { left: 0; top: 1080px; } .t4 { left: 1080px; top: 1080px; }
+.abs { position: absolute; }
+.label { font-family: 'JBM', monospace; font-weight: 500; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; line-height: 1.3; }
+.mark { font-family: 'JBM', monospace; font-weight: 500; font-size: 24px; letter-spacing: .1em; }
+.on-dark { color: #fff; } .on-dark .label { color: var(--amber); } .on-dark .mark { color: rgba(255,255,255,.5); }
+.on-light { color: var(--navy); } .on-light .label { color: var(--blue); } .on-light .mark { color: var(--slate); }
+h1 { font-weight: 800; font-size: 104px; line-height: 1.04; letter-spacing: -.035em; }
+h2 { font-weight: 800; font-size: 72px; line-height: 1.08; letter-spacing: -.03em; }
+.body { font-size: 34px; line-height: 1.45; font-weight: 400; letter-spacing: -.005em; }
+.ico { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.9; }
+
+/* ---------- Tile 1 ---------- */
+.t1 .logo { left: 96px; top: 96px; height: 72px; }
+.t1 .label { left: 96px; top: 300px; }
+.t1 h1 { left: 92px; top: 350px; width: 900px; }
+.t1 .body { left: 96px; top: 706px; width: 610px; color: rgba(255,255,255,.78); }
+
+/* ---------- Tile 2 ---------- */
+.t2 .label { left: 96px; top: 112px; }
+.t2 h2 { left: 94px; top: 160px; width: 860px; }
+.panel { left: 330px; top: 410px; width: 654px; border-radius: 22px; background: rgba(255,255,255,.045); border: 1.5px solid rgba(255,255,255,.1); padding: 8px 36px; }
+.row { position: relative; display: flex; align-items: center; gap: 30px; height: 150px; }
+.row + .row { border-top: 1.5px solid rgba(255,255,255,.09); }
+.chip { position: relative; z-index: 2; flex: 0 0 auto; width: 84px; height: 84px; border-radius: 20px; background: var(--blue); display: flex; align-items: center; justify-content: center; }
+.chip svg { width: 44px; height: 44px; } .chip svg * { stroke: #fff; }
+.row .nm { font-size: 34px; font-weight: 700; line-height: 1.22; letter-spacing: -.01em; color: #fff; }
+.spine { position: absolute; left: 77px; top: 83px; width: 3px; height: 300px; background: linear-gradient(180deg, rgba(255,176,32,.0), rgba(255,176,32,.85) 12%, rgba(255,176,32,.85) 88%, rgba(255,176,32,0)); z-index: 1; }
+.t2 .stat { position: absolute; right: 0; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 6px rgba(255,176,32,.16); }
+
+/* ---------- Tile 3 ---------- */
+.t3 .label { left: 96px; top: 214px; }
+.t3 h2 { left: 94px; top: 262px; width: 900px; }
+.t3 .svc { left: 96px; top: 472px; font-size: 34px; font-weight: 700; display: flex; align-items: center; gap: 16px; }
+.t3 .svc i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); }
+.t3 .body { left: 96px; top: 526px; width: 820px; color: var(--slate); }
+.node { position: absolute; width: 96px; height: 96px; border-radius: 50%; background: #fff; border: 2.5px solid var(--navy); display: flex; align-items: center; justify-content: center; }
+.node svg { width: 42px; height: 42px; } .node svg * { stroke: var(--navy); }
+.node.done { background: var(--blue); border-color: var(--blue); } .node.done svg * { stroke: #fff; stroke-width: 2.6; }
+.nlabel { position: absolute; width: 220px; text-align: center; color: var(--navy); }
+
+/* ---------- Tile 4 ---------- */
+.t4 .label { left: 96px; top: 214px; }
+.t4 h2 { left: 94px; top: 262px; width: 900px; }
+.t4 .list { left: 96px; top: 482px; display: flex; flex-direction: column; gap: 22px; }
+.t4 .list div { display: flex; align-items: center; gap: 22px; font-size: 34px; font-weight: 700; letter-spacing: -.01em; }
+.t4 .list svg { width: 40px; height: 40px; } .t4 .list svg * { stroke: var(--blue); stroke-width: 2.1; }
+.t4 .tag { right: 96px; top: 112px; font-size: 24px; font-weight: 600; color: var(--navy); letter-spacing: -.005em; }
+.browser { left: 560px; top: 506px; width: 424px; height: 262px; border-radius: 16px; background: #fff; border: 1.5px solid var(--mist); box-shadow: 0 24px 50px rgba(14,27,61,.12); overflow: hidden; }
+.browser .bar { height: 30px; background: var(--mist); display: flex; align-items: center; gap: 7px; padding-left: 14px; }
+.browser .bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(14,27,61,.25); }
+.sk { position: absolute; border-radius: 6px; background: var(--mist); }
+.phone { left: 846px; top: 610px; width: 124px; height: 246px; border-radius: 26px; background: var(--navy); border: 5px solid var(--navy); box-shadow: 0 24px 50px rgba(14,27,61,.22); overflow: hidden; }
+.phone .scr { position: absolute; inset: 0; border-radius: 21px; background: #13244f; overflow: hidden; }
+.cta { left: 96px; top: 876px; width: 888px; height: 116px; border-radius: 20px; background: var(--dawn); display: flex; align-items: center; padding: 0 34px; gap: 22px; color: var(--navy); }
+.cta img { height: 60px; }
+.cta .ct { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.cta b { font-size: 34px; font-weight: 800; letter-spacing: -.015em; line-height: 1.15; }
+.cta em { font-style: normal; font-size: 24px; font-weight: 600; letter-spacing: -.005em; }
+.cta span { font-family: 'JBM', monospace; font-weight: 500; font-size: 24px; letter-spacing: .02em; }
+</style>
+</head>
+<body>
+<div id="master">
+  <!-- continuous background -->
+  <div class="sky"></div>
+  <div class="grid dark"></div>
+  <div class="grid light"></div>
+  <div class="reflect">
+    <i style="left:800px;width:560px;top:26px;opacity:.38"></i>
+    <i style="left:860px;width:440px;top:56px;opacity:.30"></i>
+    <i style="left:920px;width:320px;top:86px;opacity:.22"></i>
+    <i style="left:980px;width:200px;top:116px;opacity:.15"></i>
+    <i style="left:1030px;width:100px;top:146px;opacity:.10"></i>
+  </div>
+  <svg class="sun" viewBox="0 0 680 340"><defs><linearGradient id="sg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF6B4A"/><stop offset="1" stop-color="#FFB020"/></linearGradient></defs>
+    <path d="M0 340 A340 340 0 0 1 680 340 Z" fill="url(#sg)"/></svg>
+
+  <!-- workflow path: tile 3 steps flow across the seam into the tile 4 product -->
+  <svg class="flow" viewBox="0 0 2160 2160">
+    <line x1="210" y1="1782" x2="1640" y2="1782" stroke="#0E1B3D" stroke-width="3"/>
+    <g fill="none" stroke="#0E1B3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="327 1772 337 1782 327 1792"/><polyline points="577 1772 587 1782 577 1792"/><polyline points="827 1772 837 1782 827 1792"/>
+    </g>
+    <circle cx="1010" cy="1782" r="9" fill="#FFB020"/>
+    <circle cx="1010" cy="1782" r="18" fill="none" stroke="#FFB020" stroke-opacity=".35" stroke-width="3"/>
+    <circle cx="1640" cy="1782" r="7" fill="#0E1B3D"/>
+  </svg>
+
+  <!-- TILE 1 · main message -->
+  <section class="tile t1 on-dark">
+    <img class="abs logo" src="a/elpisoft_horizontal_reversed.svg" alt="Elpisoft">
+    <div class="abs mark" style="right:96px;top:118px">01 / 04</div>
+    <div class="abs label">Elpisoft / What we offer</div>
+    <h1 class="abs">We engineer your business workflow.</h1>
+    <p class="abs body">From everyday operations to custom digital products, we turn your ideas into digital reality.</p>
+  </section>
+
+  <!-- TILE 2 · business systems -->
+  <section class="tile t2 on-dark">
+    <div class="abs mark" style="right:96px;top:112px">02 / 04</div>
+    <div class="abs label">Business systems</div>
+    <h2 class="abs">Bring your operations together.</h2>
+    <div class="abs panel">
+      <div class="spine"></div>
+      <div class="row"><div class="chip"><svg class="ico" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="nm">Customer Relationship<br>Management (CRM)</div></div>
+      <div class="row"><div class="chip"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg></div>
+        <div class="nm">Appointment Booking<br>Systems</div></div>
+      <div class="row"><div class="chip"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+        <div class="nm">Management Systems</div></div>
+    </div>
+  </section>
+
+  <!-- TILE 3 · workflow automation -->
+  <section class="tile t3 on-light">
+    <div class="abs mark" style="right:96px;top:214px">03 / 04</div>
+    <div class="abs label">Workflow automation</div>
+    <h2 class="abs">Make everyday work flow better.</h2>
+    <div class="abs svc"><i></i>Business Process Automation</div>
+    <p class="abs body">Reduce repetitive work. Connect processes.<br>Make room for growth.</p>
+    <!-- steps (centres at x 150/400/650/900, y 702 in tile coords) -->
+    <div class="node" style="left:102px;top:654px"><svg class="ico" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+    <div class="node" style="left:352px;top:654px"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><line x1="21" y1="21" x2="16.4" y2="16.4"/></svg></div>
+    <div class="node" style="left:602px;top:654px"><svg class="ico" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg></div>
+    <div class="node done" style="left:852px;top:654px"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="nlabel label" style="left:40px;top:784px;color:var(--navy)">Request</div>
+    <div class="nlabel label" style="left:290px;top:784px;color:var(--navy)">Review</div>
+    <div class="nlabel label" style="left:540px;top:784px;color:var(--navy)">Approve</div>
+    <div class="nlabel label" style="left:790px;top:784px;color:var(--blue)">Complete</div>
+  </section>
+
+  <!-- TILE 4 · digital products -->
+  <section class="tile t4 on-light">
+    <div class="abs mark" style="right:96px;top:214px">04 / 04</div>
+    <div class="abs label">Digital products</div>
+    <h2 class="abs">Build your next digital experience.</h2>
+    <div class="abs list">
+      <div><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="7" y1="13.5" x2="14" y2="13.5"/><line x1="7" y1="17" x2="11" y2="17"/></svg>Landing Pages</div>
+      <div><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Web Applications</div>
+      <div><svg class="ico" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2.5"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Mobile Applications</div>
+    </div>
+    <div class="abs browser"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="sk" style="left:22px;top:48px;width:70px;height:12px;background:#0E1B3D"></div>
+      <div class="sk" style="left:300px;top:46px;width:100px;height:18px;border-radius:5px;background:#2F5DE6"></div>
+      <div class="sk" style="left:22px;top:86px;width:230px;height:20px;background:#0E1B3D"></div>
+      <div class="sk" style="left:22px;top:114px;width:180px;height:20px;background:#0E1B3D"></div>
+      <div class="sk" style="left:22px;top:148px;width:210px;height:9px"></div>
+      <div class="sk" style="left:22px;top:164px;width:170px;height:9px"></div>
+      <div class="sk" style="left:22px;top:192px;width:84px;height:26px;border-radius:7px;background:#0E1B3D"></div>
+      <div class="sk" style="left:268px;top:84px;width:130px;height:134px;border-radius:12px;background:#F7F5F0;border:1.5px solid #E4E1D9"></div>
+    </div>
+    <div class="abs phone"><div class="scr">
+      <div class="sk" style="left:14px;top:22px;width:40px;height:8px;background:rgba(255,255,255,.5)"></div>
+      <div class="sk" style="left:14px;top:46px;width:94px;height:12px;background:#fff"></div>
+      <div class="sk" style="left:14px;top:64px;width:70px;height:12px;background:#fff"></div>
+      <div class="sk" style="left:14px;top:92px;width:94px;height:64px;border-radius:10px;background:rgba(255,255,255,.08)"></div>
+      <div class="sk" style="left:14px;top:166px;width:94px;height:7px;background:rgba(255,255,255,.25)"></div>
+      <div class="sk" style="left:14px;top:180px;width:64px;height:7px;background:rgba(255,255,255,.25)"></div>
+      <div class="sk" style="left:14px;top:196px;width:86px;height:22px;border-radius:7px;background:#2F5DE6"></div>
+    </div></div>
+    <div class="abs cta"><img src="a/elpisoft_symbol_navy.svg" alt=""><div class="ct"><b>Have an idea? Let’s build it.</b><em>Software built on hope.</em></div><span>www.elpisoft.com</span></div>
+  </section>
+</div>
+<script>
+Promise.all([document.fonts.ready, ...[...document.images].map(i => i.decode().catch(() => {}))]).then(() => window.READY = true);
+</script>
+</body>
+</html>

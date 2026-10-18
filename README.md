@@ -56,6 +56,11 @@ These come from the Elpisoft Brand Guidelines v1.0.
 - GSAP and Motion must never animate the same element. GSAP owns hero, scroll-linked and horizon effects (marked with `data-*` hooks). Motion owns everything else.
 - Every animation must degrade to a complete static page under `prefers-reduced-motion`.
 
+## Book a call
+
+The Book a call buttons open a Google Calendar appointment-schedule page (Google Meet). Set its link in the
+`VITE_BOOKING_URL` environment variable; until then they link to the Contact page. See `docs/booking.md`.
+
 ## Contact form
 
 The form posts to Formspree (endpoint in `src/config/brand.js`) with the fields `name`, `email`, `subject`, `message` and the `_gotcha` honeypot.

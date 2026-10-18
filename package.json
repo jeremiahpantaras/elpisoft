@@ -8,7 +8,8 @@
     "build": "vite build && vite build --ssr src/entry-server.js --outDir dist-server && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:seo": "node scripts/check-seo.mjs"
+    "check:seo": "node scripts/check-seo.mjs",
+    "portraits": "node scripts/portraits.mjs"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",

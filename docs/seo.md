@@ -19,6 +19,7 @@ npm run check:seo                     validates dist/ (run after a build)
 | Concern | Where it lives |
 |---|---|
 | Every page's title, description, indexability, breadcrumbs | `src/seo/routeMeta.js` (the single source) |
+| Services, families, industries (menus, pages and marquee all read these) | `src/data/services.js`, `src/data/industries.js` |
 | `<head>` tags for a page | `src/seo/head.js` |
 | JSON-LD (Organization + WebSite on `/`; BreadcrumbList + Service on service pages) | `src/seo/jsonld.js` |
 | `sitemap.xml` (generated at build, indexable routes only, no invented `lastmod`) | `src/seo/sitemap.js` |
@@ -86,7 +87,7 @@ Never edit a sitemap by hand, never set `<title>`/meta tags inside a page compon
    image. Platforms cache previews, so use their debugger tools (Facebook Sharing Debugger, LinkedIn Post
    Inspector) to refresh.
 3. Google Rich Results Test and Schema.org Validator accept the homepage and a service page.
-4. Search Console: sitemap status "Success", the 10 URLs discovered, no soft-404 or canonical conflicts.
+4. Search Console: sitemap status "Success", the 12 URLs discovered, no soft-404 or canonical conflicts.
 5. PageSpeed Insights (mobile) on `/`: note lab LCP, CLS and the Vercel checkpoint effect on real users.
 6. After 2 to 4 weeks: branded queries in Search Console (regex filter `elpi`) and the country report.
 

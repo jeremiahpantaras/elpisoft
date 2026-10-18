@@ -7,14 +7,135 @@ import pos from '../assets/images/optimized/pos.webp'
 import satoru from '../assets/images/optimized/satoru.webp'
 import sentinels from '../assets/images/optimized/sentinels.webp'
 import tabang from '../assets/images/optimized/tabang.webp'
+import imsStart from '../assets/images/optimized/ims-start.webp'
+import imsDashboard from '../assets/images/optimized/ims-dashboard.webp'
+import imsInventory from '../assets/images/optimized/ims-inventory.webp'
+import imsReports from '../assets/images/optimized/ims-reports.webp'
 
 /**
  * All projects. Titles, descriptions, tags and links are carried over from the previous site.
- * imageKind: 'screenshot' fills the frame; 'logo' is centred on a neutral tile; null shows a text-only tile.
+ * imageKind: 'screenshot' fills the frame (imageFit: 'contain' shows a wide screenshot whole); 'logo' is centred on a neutral tile; null shows a text-only tile.
  * link: null means there is no public link to show.
  * services: which core services (see services.js) the project demonstrates, derived from its tags.
+ * caseStudy: optional. A project with one gets its own page at /work/<slug> (see ProjectDetailPage). Every line in it
+ * must come from what the screenshots show; no clients, results, figures or technology are claimed.
  */
 export const PROJECTS = [
+  {
+    slug: 'inventory-management-system',
+    title: 'Inventory Management System',
+    summary: 'Stock levels, stock value and Excel reports in one place.',
+    description:
+      'An inventory management system that keeps item records, stock levels and stock value in one place, highlights items that are running low or out of stock, and exports reports to Excel.',
+    tags: ['Inventory management', 'Stock tracking', 'Reporting'],
+    image: imsInventory,
+    imageKind: 'screenshot',
+    imageFit: 'contain',
+    imageAlt:
+      'Inventory list showing each item’s name, SKU, quantity, stock status, price, total value and last update, with search, stock filters and export',
+    link: null,
+    linkLabel: 'No public link',
+    featured: false,
+    services: ['inventory', 'software', 'web'],
+    caseStudy: {
+      metaTitle: 'Inventory management system: case study — Elpisoft',
+      metaDescription:
+        'An inventory management system built by Elpisoft: item records, low-stock views, stock valuation and Excel reports. See the screens and what it can do.',
+      intro:
+        'An inventory management system we built to keep item records, stock levels and stock value in one place, with clear views of what is running low and reports that export to Excel.',
+      problem:
+        'When stock is tracked in spreadsheets or on paper, it is hard to see what is on hand, what is running low and what it is all worth, and preparing reports for audits or reordering takes time.',
+      built:
+        'This system puts the answers on screen: every item with its SKU, quantity, price and stock value, a dashboard that summarises stock health, and reports that can be downloaded as an Excel file.',
+      // Only features visible in the screenshots. The dashboard's two chart panels are empty in the current capture,
+      // so charts are not claimed; add them here once a capture shows them working.
+      capabilityGroups: [
+        {
+          title: 'Getting started',
+          items: ['A start screen where a business enters its name to begin'],
+        },
+        {
+          title: 'Dashboard overview',
+          items: [
+            'Total items and total units in stock',
+            'Count of low-stock items (fewer than 5 units)',
+            'Total inventory value at current unit prices',
+            'Shortcuts to add an item and export to Excel',
+          ],
+        },
+        {
+          title: 'Item records',
+          items: [
+            'Name, SKU, quantity, unit price and total value for every item',
+            'Last-updated time on each record',
+            'Add, edit and delete actions',
+          ],
+        },
+        {
+          title: 'Finding stock',
+          items: [
+            'Search by item name or SKU',
+            'Filters for all, low-stock, out-of-stock and in-stock items, with a count',
+            'Sortable columns',
+          ],
+        },
+        {
+          title: 'Stock health',
+          items: [
+            'A status badge on every item',
+            'Healthy stock and attention items counted separately',
+            'Zero-stock and low-stock items called out',
+          ],
+        },
+        {
+          title: 'Reports and export',
+          items: [
+            'Total stock valuation and the number of registered SKUs',
+            'The five highest-value items in stock',
+            'Excel (.xlsx) report download',
+          ],
+        },
+      ],
+      value: [
+        'See what you have, and what it is worth, at a glance.',
+        'Spot low and out-of-stock items before they become a problem.',
+        'Hand over Excel reports for audits, accounting and reordering.',
+      ],
+      industrySlugs: ['retail'],
+      // The portfolio card and the case-study hero use `image` above. Replace these files (and these entries) when the
+      // screenshots are recaptured; see docs/inventory-case-study.md.
+      gallery: [
+        {
+          src: imsInventory,
+          width: 1600,
+          height: 857,
+          alt: 'Inventory list showing each item’s name, SKU, quantity, stock status, price, total value and last update, with search, stock filters and export',
+          caption: 'Inventory: search, filter and sort every item, with its stock status and value.',
+        },
+        {
+          src: imsStart,
+          width: 1600,
+          height: 853,
+          alt: 'Start screen with the headline “Inventory management for your business” and a business name field',
+          caption: 'Start screen: a business enters its name to begin.',
+        },
+        {
+          src: imsDashboard,
+          width: 1600,
+          height: 856,
+          alt: 'Inventory dashboard with total items, low-stock count and total inventory value, plus stock distribution and top stock level panels',
+          caption: 'Dashboard: total items, low-stock count and total inventory value.',
+        },
+        {
+          src: imsReports,
+          width: 1600,
+          height: 855,
+          alt: 'Stock valuation report with total valuation, registered SKUs, healthy and attention counts and the five highest-value items, with an Excel download button',
+          caption: 'Reports: stock valuation, item counts and an Excel download.',
+        },
+      ],
+    },
+  },
   {
     slug: 'recivo',
     title: 'Recivo',
@@ -103,7 +224,7 @@ export const PROJECTS = [
     link: 'https://satoru-chi.vercel.app/',
     linkLabel: 'Visit site',
     featured: false,
-    services: ['web', 'automation'],
+    services: ['web', 'automation', 'ai'],
   },
   {
     slug: 'point-of-sale',
@@ -118,7 +239,7 @@ export const PROJECTS = [
     link: null,
     linkLabel: 'No public link',
     featured: false,
-    services: ['software', 'web'],
+    services: ['software', 'web', 'inventory'],
   },
   {
     slug: 'sentinels',
@@ -168,4 +289,6 @@ export const PROJECTS = [
 ]
 
 export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.featured)
+export const CASE_STUDIES = PROJECTS.filter((p) => p.caseStudy)
+export const projectPath = (project) => `/work/${project.slug}`
 export const projectsForService = (serviceId) => PROJECTS.filter((p) => p.services.includes(serviceId))

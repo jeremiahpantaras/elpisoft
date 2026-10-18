@@ -1,35 +1,49 @@
+import { Link } from 'react-router-dom'
 import PageIntro from '../components/ui/PageIntro'
 import Section from '../components/ui/Section'
+import Eyebrow from '../components/ui/Eyebrow'
 import Reveal from '../components/ui/Reveal'
-import ServiceList from '../components/ui/ServiceList'
+import ServiceFamilySection from '../components/ui/ServiceFamilySection'
+import Approach from '../components/sections/home/Approach'
 import ClosingCta from '../components/sections/ClosingCta'
-import { SUPPORTING_CAPABILITIES } from '../data/services'
+import { SERVICE_FAMILIES } from '../data/services'
+import { INDUSTRIES, industryPath } from '../data/industries'
 
 export default function ServicesPage() {
   return (
     <>
       <PageIntro eyebrow="01 — Services" title="What we build">
-        Dependable software for teams that want to move forward with confidence. Most projects combine more than one of the services below.
+        From first idea to dependable software: we design, build and support products that solve real problems. Most
+        projects combine more than one of the services below.
       </PageIntro>
 
-      <Section surface="white" aria-labelledby="core-services">
-        <h2 id="core-services" className="sr-only">Core services</h2>
-        <div className="lg:ml-[calc(100%/12*3)]">
-          <ServiceList detailed />
-        </div>
-        <Reveal className="mt-12 border-t border-mist pt-8 lg:ml-[calc(100%/12*3)]">
-          <h2 className="type-h3">Supporting capabilities</h2>
-          <p className="mt-2 max-w-[56ch] text-slate">
-            Alongside the work above, we also provide the design, hosting and care that keep a product useful after launch.
+      {SERVICE_FAMILIES.map((family, i) => (
+        <ServiceFamilySection key={family.id} family={family} index={i} surface={i % 2 === 0 ? 'white' : 'cloud'} />
+      ))}
+
+      <Section surface="deep" aria-labelledby="industries-teaser">
+        <Reveal>
+          <Eyebrow tone="dark">Industries</Eyebrow>
+          <h2 id="industries-teaser" className="type-h1 mt-5">Built for your industry</h2>
+          <p className="type-body-lg mt-4 max-w-[52ch] text-white/75">
+            Every industry has its own way of working. See the problems we can help with and what we can build.
           </p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {SUPPORTING_CAPABILITIES.map((c) => (
-              <li key={c.id} className="rounded-control border border-mist px-3 py-1.5 text-sm font-medium">{c.title}</li>
-            ))}
-          </ul>
         </Reveal>
+        <ul className="mt-10 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+          {INDUSTRIES.map((industry) => (
+            <li key={industry.slug} className="border-t border-white/20">
+              <Link to={industryPath(industry)} className="block min-h-11 py-4 font-semibold text-white underline-offset-4 hover:underline">
+                {industry.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link to="/industries" className="mt-6 inline-flex min-h-11 items-center font-semibold text-amber underline underline-offset-4">
+          See all industries
+        </Link>
       </Section>
 
+      <Approach surface="white" eyebrow="How we work" heading="A clear process, with no surprises" />
       <ClosingCta heading="Let’s talk about what you need." />
     </>
   )

@@ -17,6 +17,20 @@ const EMAILS = {
   general: 'hello@elpisoft.com',
 }
 
+/**
+ * Book a call: the public link to a Google Calendar appointment-schedule booking page (Google Meet).
+ * Currently set in BOOKING_URL_FALLBACK below. It can be overridden without a code change (the first valid value wins):
+ *   1. Environment variable VITE_BOOKING_URL (e.g. Vercel -> Project -> Settings -> Environment Variables,
+ *      or .env.local for local builds), then rebuild.
+ *   2. BOOKING_URL_FALLBACK below.
+ * Only an https:// URL is accepted. While it is empty, every Book a call button links to /contact#call instead,
+ * so the button never points at an empty or placeholder link. Never invent this URL.
+ */
+const BOOKING_URL_FALLBACK = 'https://calendar.app.google/SWmchWZTAGihFUDx9' // "Discovery call with Elpisoft" (public booking link)
+const BOOKING_URL = [import.meta.env.VITE_BOOKING_URL, BOOKING_URL_FALLBACK]
+  .map((v) => (typeof v === 'string' ? v.trim() : ''))
+  .find((v) => /^https:\/\/\S+$/.test(v)) ?? ''
+
 // One number serves calls and all messaging apps (WhatsApp, Telegram, Viber).
 const PHONE = '+639085608811'
 const PHONE_DIGITS = PHONE.replace(/\D/g, '')
@@ -64,6 +78,23 @@ export const BRAND = {
   siteUrl: 'https://www.elpisoft.com',
 
   formspreeEndpoint: 'https://formspree.io/f/xovpdlzz',
+
+  /**
+   * Figures supplied by Elpisoft for the hero social-proof line. The rating is shown only as a plain "client
+   * rating" (never as a Google or other platform's rating), so keep the underlying client feedback on file.
+   */
+  socialProof: {
+    clients: 15,
+    rating: 4.5,
+    maxRating: 5,
+  },
+
+  booking: {
+    url: BOOKING_URL, // '' until configured (see BOOKING_URL above)
+    durationMinutes: 30,
+    provider: 'Google Meet',
+    fallbackPath: '/contact#call',
+  },
 
   assets: {
     logoFullColor: '/brand/elpisoft_horizontal_full-color.svg',

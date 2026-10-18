@@ -14,6 +14,31 @@ const NAME_PARTS = [
   { label: 'English', title: 'Soft', body: 'Software: the craft we use to turn that expectation into reality.' },
 ]
 
+/** Approved portrait, or a neutral initials tile (decorative: the name is the heading below) until one is supplied. */
+function TeamPortrait({ member }) {
+  if (member.image) {
+    return (
+      <img
+        src={member.image}
+        alt={`Portrait of ${member.name}`}
+        width="720"
+        height="720"
+        loading="lazy"
+        decoding="async"
+        className="aspect-square w-full max-w-[320px] rounded-media border border-mist object-cover object-top sm:max-w-none"
+      />
+    )
+  }
+  return (
+    <div
+      aria-hidden="true"
+      className="flex aspect-square w-full max-w-[320px] items-center justify-center rounded-media border border-mist bg-white sm:max-w-none"
+    >
+      <span className="type-h1 text-navy">{member.initials}</span>
+    </div>
+  )
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -51,18 +76,10 @@ export default function AboutPage() {
           <Eyebrow>The team</Eyebrow>
           <h2 id="team-heading" className="type-h2 mt-5">The people behind the work</h2>
         </Reveal>
-        <ul className="mt-10 grid gap-10 sm:grid-cols-2 lg:max-w-[760px]">
+        <ul className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((member, i) => (
             <Reveal as="li" key={member.id} delay={i * 0.06}>
-              <img
-                src={member.image}
-                alt={`Portrait of ${member.name}`}
-                width="720"
-                height="720"
-                loading="lazy"
-                decoding="async"
-                className="aspect-square w-full max-w-[320px] rounded-media border border-mist object-cover object-top"
-              />
+              <TeamPortrait member={member} />
               <h3 className="type-h3 mt-5">{member.name}</h3>
               <p className="mt-1 font-semibold text-slate">{member.role}</p>
               <ul className="type-label mt-3 space-y-1 text-slate">

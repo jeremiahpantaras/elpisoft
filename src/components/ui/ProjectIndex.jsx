@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { AnimatePresence, motion as Motion, useReducedMotion } from 'motion/react'
 import { ChevronDown } from 'lucide-react'
 import { PROJECTS } from '../../data/projects'
-import { ProjectLink, ProjectMedia } from './ProjectCard'
+import { CaseStudyLink, ProjectLink, ProjectMedia } from './ProjectCard'
 import { EASE } from '../../lib/motion'
 
 /** Table-like index of every project. Rows expand to show the screenshot, description and link (M10). */
@@ -62,7 +62,10 @@ export default function ProjectIndex() {
                       <ul className="type-label mt-4 flex flex-wrap gap-x-4 gap-y-1 text-slate">
                         {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
                       </ul>
-                      <div className="mt-4"><ProjectLink project={project} tone="light" /></div>
+                      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1">
+                        <CaseStudyLink project={project} tone="light" />
+                        <ProjectLink project={project} tone="light" />
+                      </div>
                     </div>
                   </div>
                 </Motion.div>

@@ -1,10 +1,16 @@
-import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { projectPath } from '../../data/projects'
 
-/** Screenshot or logo tile. Titles are always visible below the media, never hover-only. */
+/**
+ * Screenshot or logo tile. Titles are always visible below the media, never hover-only.
+ * imageFit: 'contain' shows a very wide screenshot whole on the Cloud tile instead of cropping it (default is to fill the frame).
+ */
 export function ProjectMedia({ project, tone = 'dark', className = '' }) {
-  const { image, imageKind, imageAlt } = project
+  const { image, imageKind, imageAlt, imageFit } = project
+  const contain = imageFit === 'contain'
   return (
-    <div className={`relative aspect-[16/10] overflow-hidden rounded-media border ${tone === 'dark' ? 'border-white/10' : 'border-mist'} bg-white ${className}`}>
+    <div className={`relative aspect-[16/10] overflow-hidden rounded-media border ${tone === 'dark' ? 'border-white/10' : 'border-mist'} ${contain ? 'bg-cloud' : 'bg-white'} ${className}`}>
       {image && imageKind === 'screenshot' && (
         <img
           src={image}
@@ -13,7 +19,11 @@ export function ProjectMedia({ project, tone = 'dark', className = '' }) {
           decoding="async"
           width="1600"
           height="1000"
-          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className={
+            contain
+              ? 'h-full w-full object-contain'
+              : 'h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100'
+          }
         />
       )}
       {image && imageKind === 'logo' && (
@@ -52,6 +62,26 @@ export function ProjectLink({ project, tone = 'dark' }) {
   )
 }
 
+/** Internal link to a project's own page; renders nothing for projects without a case study. */
+export function CaseStudyLink({ project, tone = 'dark', className = '' }) {
+  if (!project.caseStudy) return null
+  const color = tone === 'dark' ? 'text-amber' : 'text-horizon'
+  return (
+    <Link
+      to={projectPath(project)}
+      className={`group/case inline-flex min-h-8 items-center gap-1 font-semibold underline underline-offset-4 ${color} ${className}`}
+    >
+      Read the case study
+      <ArrowRight
+        size={16}
+        aria-hidden="true"
+        className="transition-transform duration-200 group-hover/case:translate-x-1 motion-reduce:transition-none"
+      />
+      <span className="sr-only"> for {project.title}</span>
+    </Link>
+  )
+}
+
 /** Featured project, set for a navy surface. */
 export default function ProjectCard({ project }) {
   return (
@@ -62,7 +92,10 @@ export default function ProjectCard({ project }) {
       <ul className="type-label mt-4 flex flex-wrap gap-x-4 gap-y-1 text-white/60">
         {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
       </ul>
-      <div className="mt-4"><ProjectLink project={project} /></div>
+      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1">
+        <CaseStudyLink project={project} />
+        <ProjectLink project={project} />
+      </div>
     </article>
   )
 }

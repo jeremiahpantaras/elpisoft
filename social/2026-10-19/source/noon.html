@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Elpisoft idea to reality</title>
+<style>
+@font-face { font-family: 'PJS'; src: url('a/pjs.woff2') format('woff2'); font-weight: 200 800; }
+@font-face { font-family: 'JBM'; src: url('a/jbm.woff2') format('woff2'); font-weight: 500; }
+:root { --navy:#0E1B3D; --amber:#FFB020; --coral:#FF6B4A; --blue:#2F5DE6; --slate:#5A6377; --mist:#E4E1D9; --cloud:#F7F5F0;
+  --dawn: linear-gradient(45deg,#FF6B4A 0%,#FFB020 100%); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body { font-family: 'PJS', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: var(--navy); }
+#poster { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--cloud); }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(14,27,61,.055) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(14,27,61,.055) 1.5px, transparent 1.5px); background-size: 90px 90px; background-position: 45px 45px; }
+.abs { position: absolute; }
+.logo { left: 88px; top: 88px; height: 56px; }
+.label { left: 88px; top: 214px; font-family: 'JBM', monospace; font-weight: 500; font-size: 24px; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+h1 { left: 84px; top: 256px; font-size: 100px; font-weight: 800; line-height: 1.04; letter-spacing: -.04em; white-space: nowrap; }
+h1 .d { position: relative; display: inline-block; }
+h1 .d::after { content: ''; position: absolute; left: 4px; right: 34px; bottom: 2px; height: 12px; border-radius: 6px; background: var(--dawn); }
+.sub { left: 88px; top: 488px; width: 760px; font-size: 32px; line-height: 1.45; color: var(--slate); }
+
+/* the idea -> reality frame */
+.frame { left: 88px; top: 640px; width: 904px; height: 456px; }
+.layer { position: absolute; inset: 0; border-radius: 22px; }
+.sketch { border: 2.5px dashed rgba(90,99,119,.55); background-image: radial-gradient(rgba(90,99,119,.28) 1.6px, transparent 1.8px); background-size: 22px 22px; background-position: 11px 11px; }
+.real { background: #fff; border: 1.5px solid var(--mist); box-shadow: 0 30px 60px rgba(14,27,61,.10); clip-path: inset(-80px -80px -80px 360px round 0); }
+.real .el, .sketch .el { position: absolute; border-radius: 7px; }
+.sketch .el { border: 2.5px dashed rgba(90,99,119,.6); }
+.sketch .el.fill { background: transparent; }
+.divider { position: absolute; left: 359px; top: -26px; width: 3px; height: 508px; background: var(--amber); border-radius: 3px; }
+.handle { position: absolute; left: 332px; top: 277px; width: 58px; height: 58px; border-radius: 50%; background: var(--navy); box-shadow: 0 0 0 6px rgba(255,176,32,.25); display: flex; align-items: center; justify-content: center; }
+.handle svg { width: 30px; height: 30px; }
+.mono-s { font-family: 'JBM', monospace; font-weight: 500; letter-spacing: .1em; }
+
+.cta { left: 88px; top: 1166px; font-size: 36px; font-weight: 800; letter-spacing: -.02em; }
+.url { left: 88px; top: 1222px; font-family: 'JBM', monospace; font-weight: 500; font-size: 24px; letter-spacing: .04em; color: var(--blue); }
+.tag { right: 88px; top: 1222px; font-size: 24px; font-weight: 600; color: var(--navy); }
+.rule { left: 88px; top: 1130px; width: 904px; height: 2px; background: var(--mist); }
+.rule i { position: absolute; left: 0; top: 0; width: 120px; height: 2px; background: var(--dawn); }
+</style>
+</head>
+<body>
+<div id="poster">
+  <div class="grid"></div>
+  <img class="abs logo" src="a/elpisoft_horizontal_full-color.svg" alt="Elpisoft">
+  <div class="abs label">Ideas → Possibility → Progress</div>
+  <h1 class="abs">Your idea<br>deserves to <span class="d">exist.</span></h1>
+  <p class="abs sub">We turn your ideas into thoughtful, dependable digital solutions.</p>
+
+  <div class="abs frame">
+    <!-- the idea: a loose, dashed sketch of the same screen -->
+    <div class="layer sketch">
+      <div class="el" style="left:32px;top:28px;width:96px;height:22px"></div>
+      <div class="el" style="left:540px;top:30px;width:56px;height:16px"></div>
+      <div class="el" style="left:612px;top:30px;width:56px;height:16px"></div>
+      <div class="el" style="left:684px;top:30px;width:56px;height:16px"></div>
+      <div class="el" style="left:762px;top:22px;width:110px;height:34px;border-radius:9px"></div>
+      <div class="el" style="left:548px;top:112px;width:320px;height:30px"></div>
+      <div class="el" style="left:548px;top:152px;width:250px;height:30px"></div>
+      <div class="el" style="left:548px;top:204px;width:300px;height:12px"></div>
+      <div class="el" style="left:548px;top:226px;width:230px;height:12px"></div>
+      <div class="el" style="left:548px;top:262px;width:124px;height:44px;border-radius:10px"></div>
+      <div class="el" style="left:688px;top:262px;width:124px;height:44px;border-radius:10px"></div>
+      <div class="el" style="left:32px;top:344px;width:264px;height:84px;border-radius:14px"></div>
+      <div class="el" style="left:320px;top:344px;width:264px;height:84px;border-radius:14px"></div>
+      <div class="el" style="left:608px;top:344px;width:264px;height:84px;border-radius:14px"></div>
+      <svg class="abs" style="left:0;top:0" width="904" height="456" viewBox="0 0 904 456" fill="none">
+        <!-- construction: the sun as a compass circle, horizon, centre mark -->
+        <path d="M220 306 A140 140 0 0 1 500 306" stroke="rgba(90,99,119,.55)" stroke-width="2.5" stroke-dasharray="9 7"/>
+        <line x1="170" y1="306" x2="520" y2="306" stroke="rgba(90,99,119,.55)" stroke-width="2.5" stroke-dasharray="9 7"/>
+        <line x1="360" y1="306" x2="261" y2="207" stroke="rgba(90,99,119,.45)" stroke-width="2" stroke-dasharray="4 6"/>
+        <text x="282" y="246" fill="rgba(90,99,119,.8)" font-family="JBM" font-size="16" letter-spacing="1.5">R</text>
+        <g stroke="rgba(90,99,119,.7)" stroke-width="2"><line x1="70" y1="96" x2="70" y2="120"/><line x1="58" y1="108" x2="82" y2="108"/>
+          <line x1="170" y1="296" x2="170" y2="316"/></g>
+      </svg>
+    </div>
+    <!-- the reality: the same screen, finished -->
+    <div class="layer real">
+      <div class="el" style="left:32px;top:30px;width:96px;height:18px;background:var(--navy)"></div>
+      <div class="el" style="left:540px;top:32px;width:56px;height:12px;background:var(--mist)"></div>
+      <div class="el" style="left:612px;top:32px;width:56px;height:12px;background:var(--mist)"></div>
+      <div class="el" style="left:684px;top:32px;width:56px;height:12px;background:var(--mist)"></div>
+      <div class="el" style="left:762px;top:22px;width:110px;height:34px;border-radius:9px;background:var(--blue)"></div>
+      <svg class="abs" style="left:0;top:0" width="904" height="456" viewBox="0 0 904 456">
+        <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF6B4A"/><stop offset="1" stop-color="#FFB020"/></linearGradient>
+          <clipPath id="hz"><rect x="0" y="0" width="904" height="306"/></clipPath></defs>
+        <circle cx="360" cy="306" r="140" fill="url(#g)" clip-path="url(#hz)"/>
+        <line x1="170" y1="306" x2="520" y2="306" stroke="#0E1B3D" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="el" style="left:548px;top:112px;width:320px;height:30px;background:var(--navy)"></div>
+      <div class="el" style="left:548px;top:152px;width:250px;height:30px;background:var(--navy)"></div>
+      <div class="el" style="left:548px;top:206px;width:300px;height:10px;background:var(--mist)"></div>
+      <div class="el" style="left:548px;top:228px;width:230px;height:10px;background:var(--mist)"></div>
+      <div class="el" style="left:548px;top:262px;width:124px;height:44px;border-radius:10px;background:var(--navy)"></div>
+      <div class="el" style="left:688px;top:262px;width:124px;height:44px;border-radius:10px;border:2px solid var(--navy)"></div>
+      <div class="el" style="left:32px;top:344px;width:264px;height:84px;border-radius:14px;background:var(--cloud);border:1.5px solid var(--mist)"></div>
+      <div class="el" style="left:320px;top:344px;width:264px;height:84px;border-radius:14px;background:var(--cloud);border:1.5px solid var(--mist)"></div>
+      <div class="el" style="left:608px;top:344px;width:264px;height:84px;border-radius:14px;background:var(--cloud);border:1.5px solid var(--mist)"></div>
+      <div class="el" style="left:404px;top:366px;width:40px;height:40px;border-radius:10px;background:var(--blue)"></div>
+      <div class="el" style="left:458px;top:372px;width:104px;height:12px;background:var(--navy)"></div>
+      <div class="el" style="left:458px;top:392px;width:80px;height:9px;background:var(--mist)"></div>
+      <div class="el" style="left:628px;top:366px;width:40px;height:40px;border-radius:10px;background:var(--navy)"></div>
+      <div class="el" style="left:682px;top:372px;width:150px;height:12px;background:var(--navy)"></div>
+      <div class="el" style="left:682px;top:392px;width:110px;height:9px;background:var(--mist)"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"/><polyline points="15 6 21 12 15 18"/></svg></div>
+  </div>
+
+  <div class="abs rule"><i></i></div>
+  <div class="abs cta">Have an idea? Let’s build it.</div>
+  <div class="abs url">www.elpisoft.com</div>
+  <div class="abs tag">Software built on hope.</div>
+</div>
+<script>
+Promise.all([document.fonts.ready, ...[...document.images].map(i => i.decode().catch(() => {}))]).then(() => window.READY = true);
+</script>
+</body>
+</html>

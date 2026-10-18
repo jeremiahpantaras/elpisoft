@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import Container from '../ui/Container'
 import Eyebrow from '../ui/Eyebrow'
 import Button from '../ui/Button'
+import BookCallButton from '../ui/BookCallButton'
 import SplitHeading from '../ui/SplitHeading'
 import SunriseMark from '../brand/SunriseMark'
 import { gsap, useGSAP, NO_MOTION_PREF, failSafePlay } from '../../lib/gsap'
@@ -40,12 +41,16 @@ export default function ClosingCta({ heading = 'Have a project in mind?' }) {
           <p className="type-body-lg mt-5 max-w-[52ch] text-white/75">
             Tell us what you are trying to build. We will reply with honest next steps and a realistic view of timing.
           </p>
-          <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <Button to="/contact" variant="primary" arrow>Start a project</Button>
-            <a href={`mailto:${BRAND.contact.email}`} className="break-all font-semibold underline underline-offset-4 decoration-white/40 hover:decoration-white">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <BookCallButton location="closing" />
+            <Button to="/contact" variant="outline-dark">Send a message</Button>
+          </div>
+          <p className="mt-6 text-white/75">
+            Or email us at{' '}
+            <a href={`mailto:${BRAND.contact.email}`} className="break-all font-semibold text-white underline underline-offset-4 decoration-white/40 hover:decoration-white">
               {BRAND.contact.email}
             </a>
-          </div>
+          </p>
         </div>
       </Container>
       <SunriseMark
