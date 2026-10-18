@@ -109,6 +109,11 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+/* Hold the first-load hero sunrise behind the branded preloader (index.html); it starts as the overlay begins to lift. */
+.preload-lock .hero-css-intro [data-sun],
+.preload-lock .hero-css-intro [data-bowl] {
+  animation-play-state: paused;
+}
 @media (prefers-reduced-motion: no-preference) {
   .hero-css-intro [data-sun] {
     animation: sun-rise 1.4s cubic-bezier(0.33, 1, 0.68, 1) 0.2s both;

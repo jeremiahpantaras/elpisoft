@@ -20,6 +20,7 @@ import { SERVICES, servicePath } from './data/services'
 import { CASE_STUDIES, projectPath } from './data/projects'
 import { ScrollTrigger } from './lib/gsap'
 import { markHydrated } from './lib/hydration'
+import { finishPreloader } from './lib/preloader'
 import { contactChannelFor, trackEvent } from './lib/analytics'
 
 // M9: route transition is opacity only, so layout and ScrollTrigger offsets never shift mid-fade.
@@ -63,6 +64,8 @@ function useClientBehaviours() {
   useEffect(() => {
     // Anything from here on is a client-side render: entrance animations may play for on-screen content.
     markHydrated()
+    // The branded preloader (static HTML in index.html) exits now that the app is interactive. Runs once per document.
+    finishPreloader()
 
     // Page height changes after first paint (lazy images, font swaps, route changes) would leave
     // ScrollTrigger start/end positions stale, so re-measure whenever the document resizes.

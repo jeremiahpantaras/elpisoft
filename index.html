@@ -14,6 +14,53 @@
     <meta name="author" content="Elpisoft" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
+    <!--
+      Branded preloader (docs/preloader.md). The overlay below is static HTML, so it paints with the page, before any
+      JavaScript arrives; its entrance is pure CSS. src/lib/preloader.js runs the exit (GSAP) once the app has hydrated.
+      Only visitors with JavaScript see it (html.is-preloading is added by the script below), and it never stays longer
+      than MAX_MS, even if the app fails to load.
+    -->
+    <link rel="preload" href="/brand/elpisoft_stacked_reversed.svg" as="image" type="image/svg+xml" />
+    <style id="preloader-css">
+      .pl{display:none}
+      html.is-preloading .pl{display:flex;position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;height:100vh;height:100dvh;padding:24px;background:#0E1B3D;overflow:hidden;touch-action:none}
+      html.preload-lock{overflow:hidden;scrollbar-gutter:stable}
+      .pl-stage{--pl-logo:clamp(120px,24vmin,184px);display:flex;flex-direction:column;align-items:center;text-align:center}
+      .pl-logo{display:block;width:var(--pl-logo);height:auto;animation:pl-fade .45s cubic-bezier(.22,1,.36,1) both}
+      .pl-horizon{position:relative;width:min(420px,72vw);height:2px;margin-top:calc(var(--pl-logo) * .3)}
+      .pl-line{position:absolute;left:0;right:0;top:.5px;height:1px;background:rgba(228,225,217,.28);transform:scaleX(0);animation:pl-draw .55s cubic-bezier(.65,0,.35,1) .2s both}
+      .pl-accent{position:absolute;left:50%;top:0;width:72px;height:2px;margin-left:-36px;border-radius:1px;background:linear-gradient(45deg,#FF6B4A,#FFB020);transform:scaleX(0);animation:pl-draw .45s cubic-bezier(.22,1,.36,1) .45s both}
+      .pl-tagline{margin:20px 0 0;overflow:hidden;color:#E4E1D9;letter-spacing:.01em;font:500 clamp(.9375rem,.85rem + .4vw,1.0625rem)/1.4 "Plus Jakarta Sans Variable",Arial,Helvetica,sans-serif}
+      .pl-tagline>span{display:block;animation:pl-rise .5s cubic-bezier(.22,1,.36,1) .55s both}
+      .pl-edge{position:absolute;left:0;right:0;bottom:0;height:2px;opacity:0;background:linear-gradient(45deg,#FF6B4A,#FFB020)}
+      .pl.pl-out{opacity:0;transition:opacity .3s linear}
+      @keyframes pl-fade{from{opacity:0}to{opacity:1}}
+      @keyframes pl-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+      @keyframes pl-rise{from{opacity:0;transform:translateY(105%)}to{opacity:1;transform:none}}
+      @media (prefers-reduced-motion:reduce){.pl-logo,.pl-line,.pl-accent,.pl-tagline>span{animation:none;transform:none;opacity:1}}
+      @media (max-height:420px){.pl-stage{--pl-logo:clamp(96px,26vmin,140px)}.pl-tagline{margin-top:14px}}
+      @media print{.pl{display:none!important}}
+    </style>
+    <script>
+      (function () {
+        var MAX_MS = 4000 // hard cap: the overlay never stays longer than this
+        var d = document.documentElement
+        d.classList.add('is-preloading', 'preload-lock')
+        function done() {
+          d.classList.remove('preload-lock')
+          var r = document.getElementById('root')
+          if (r) r.inert = false
+          var p = document.getElementById('preloader')
+          if (!p) { d.classList.remove('is-preloading'); return }
+          p.classList.add('pl-out')
+          setTimeout(function () { p.remove(); d.classList.remove('is-preloading') }, 300)
+        }
+        window.__elpisoftPreloader = { done: done, timer: setTimeout(done, MAX_MS) }
+        // A page restored from the back/forward cache must not show the intro again.
+        addEventListener('pageshow', function (e) { if (e.persisted) done() })
+      })()
+    </script>
+
     <!-- Tags shared by every page -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Elpisoft" />
@@ -44,7 +91,17 @@
     <!--/seo-head-->
   </head>
   <body>
+    <!-- Decorative overlay: hidden from assistive technology, nothing in it is focusable. -->
+    <div id="preloader" class="pl" aria-hidden="true">
+      <div class="pl-stage">
+        <img class="pl-logo" src="/brand/elpisoft_stacked_reversed.svg" width="362" height="336" alt="" fetchpriority="high" />
+        <div class="pl-horizon"><span class="pl-line"></span><span class="pl-accent"></span></div>
+        <p class="pl-tagline"><span>Software built on hope.</span></p>
+      </div>
+      <span class="pl-edge"></span>
+    </div>
     <div id="root"></div>
+    <script>if (document.documentElement.classList.contains('preload-lock')) document.getElementById('root').inert = true</script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
