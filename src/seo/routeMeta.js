@@ -64,9 +64,11 @@ export const ROUTES = [
       'Tell Elpisoft what you want to build. Send a message, email us, or chat on WhatsApp, Telegram or Viber, and we will reply with honest next steps.',
   },
   {
-    path: '/privacy',
-    title: `Privacy policy and data use — ${NAME}`,
-    description: 'What personal information the Elpisoft website collects, why, and how to contact us about it.',
+    path: '/privacy-policy',
+    title: `Privacy Policy — ${NAME}`,
+    description:
+      'How Elpisoft collects, uses and protects personal information under the Philippine Data Privacy Act of 2012 (RA 10173), and how to exercise your rights.',
+    crumbs: [{ name: 'Privacy Policy', path: '/privacy-policy' }],
   },
 ].map((route) => ({ indexable: true, crumbs: null, ...route }))
 

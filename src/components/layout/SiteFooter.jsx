@@ -29,7 +29,7 @@ export default function SiteFooter() {
         <nav aria-label="Footer">
           <h2 className="type-label text-amber">Explore</h2>
           <ul className="mt-4 space-y-1">
-            {[{ label: 'Home', to: '/' }, ...NAV_LINKS, { label: 'Privacy', to: '/privacy' }].map(({ label, to }) => (
+            {[{ label: 'Home', to: '/' }, ...NAV_LINKS, { label: 'Privacy Policy', to: '/privacy-policy' }].map(({ label, to }) => (
               <li key={to}><Link to={to} className={linkCls}>{label}</Link></li>
             ))}
           </ul>

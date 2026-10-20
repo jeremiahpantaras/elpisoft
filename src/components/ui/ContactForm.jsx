@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { AnimatePresence, motion as Motion, useReducedMotion } from 'motion/react'
+import { Link } from 'react-router-dom'
 import { AlertCircle, CheckCircle, Send } from 'lucide-react'
 import Button from './Button'
 import { BRAND } from '../../config/brand'
@@ -91,6 +92,11 @@ export default function ContactForm() {
 
       {/* Honeypot */}
       <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+
+      <p className="text-sm text-slate">
+        By sending this form, you agree that {BRAND.name} will use your details to reply to you. See our{' '}
+        <Link to="/privacy-policy" className="font-semibold text-horizon underline underline-offset-4">Privacy Policy</Link>.
+      </p>
 
       <Button type="submit" variant="primary" disabled={status === 'submitting'} className="w-full sm:w-auto disabled:opacity-60">
         {status === 'submitting' ? 'Sending…' : 'Send message'}

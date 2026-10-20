@@ -96,6 +96,13 @@ export const BRAND = {
     fallbackPath: '/contact#call',
   },
 
+  // Privacy policy details. Update lastUpdated whenever the policy text changes.
+  privacy: {
+    dpoName: 'Jeremiah Pantaras',
+    dpoRole: 'Founder and CEO',
+    lastUpdated: '21 October 2026',
+  },
+
   assets: {
     logoFullColor: '/brand/elpisoft_horizontal_full-color.svg',
     logoReversed: '/brand/elpisoft_horizontal_reversed.svg',

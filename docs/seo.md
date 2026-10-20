@@ -95,5 +95,5 @@ Never edit a sitemap by hand, never set `<title>`/meta tags inside a page compon
 The service pages use only facts already on the site. Stronger pages need real input: typical timelines and
 scope, the technology actually used per service, case-study detail (problem, approach, what shipped) and
 permission to name clients, a current Recivo screenshot (the existing one shows the old brand), contracting and
-payment terms for overseas clients, and a legal review of `/privacy`. A UAE-facing page should wait until there
+payment terms for overseas clients, and a legal review of `/privacy-policy` (the old `/privacy` URL redirects there permanently via `vercel.json`). A UAE-facing page should wait until there
 is genuine UAE experience or presence to describe.

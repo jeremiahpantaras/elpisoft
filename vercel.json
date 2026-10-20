@@ -1,4 +1,5 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [{ "source": "/privacy", "destination": "/privacy-policy", "permanent": true }]
 }

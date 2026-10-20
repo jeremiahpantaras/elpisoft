@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence, MotionConfig, motion as Motion, useReducedMotion } from 'motion/react'
 import SkipLink from './components/layout/SkipLink'
 import SiteHeader from './components/layout/SiteHeader'
@@ -51,7 +51,8 @@ function AnimatedRoutes() {
           ))}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPage />} />
+          <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Motion.main>
