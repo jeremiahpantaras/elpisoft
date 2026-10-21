@@ -1,5 +1,7 @@
 import jeremiah from '../assets/images/optimized/jeremiah.webp'
 import wenard from '../assets/images/optimized/wenard.webp'
+import john from '../assets/images/optimized/john.webp'
+import edsel from '../assets/images/optimized/edsel.webp'
 
 /**
  * The team, in display order. `image: null` shows a neutral initials tile (see TeamPortrait on the About page) until an
@@ -32,7 +34,7 @@ export const TEAM = [
     name: 'John Michael Pantaras',
     role: 'Co-founder',
     details: ['Strategist and advisor', 'Strategic planning', 'Long-term goals and company vision'],
-    image: null,
+    image: john,
     portfolio: null,
   },
   {
@@ -41,7 +43,7 @@ export const TEAM = [
     name: 'Edsel John Robles',
     role: 'Hardware–software integration technologist',
     details: ['Embedded systems', 'IoT development', 'Automation'],
-    image: null,
+    image: edsel,
     portfolio: null,
   },
 ]
