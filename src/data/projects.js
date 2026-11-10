@@ -23,7 +23,7 @@ import peecool from '../assets/images/optimized/peecool.webp'
  * caseStudy: optional. A project with one gets its own page at /work/<slug> (see ProjectDetailPage). Every line in it
  * must come from what the screenshots show; no clients, results, figures or technology are claimed.
  */
-export const PROJECTS = [
+const PROJECT_LIST = [
   {
     slug: 'inventory-management-system',
     title: 'Inventory Management System',
@@ -38,7 +38,6 @@ export const PROJECTS = [
       'Inventory list showing each item’s name, SKU, quantity, stock status, price, total value and last update, with search, stock filters and export',
     link: null,
     linkLabel: 'No public link',
-    featured: false,
     services: ['inventory', 'software', 'web'],
     caseStudy: {
       metaTitle: 'Inventory management system: case study — Elpisoft',
@@ -152,7 +151,6 @@ export const PROJECTS = [
       'Three customer phone screens of the QR ordering system, with sample menu data: the menu with a cart bar, the order review with payment method and note, and the order receipt',
     link: null,
     linkLabel: 'No public link',
-    featured: false,
     services: ['web', 'software'],
   },
   {
@@ -168,7 +166,6 @@ export const PROJECTS = [
       'HR leave dashboard with sample data showing total employees, days allocated, used and unused, employees with low balances and recent allocations',
     link: null,
     linkLabel: 'No public link',
-    featured: false,
     services: ['software', 'web'],
   },
   {
@@ -184,7 +181,6 @@ export const PROJECTS = [
       'Peecool dashboard with sample data showing eight pickleball courts with live scores, bookings and recent activity',
     link: null,
     linkLabel: 'No public link',
-    featured: false,
     services: ['software', 'web'],
   },
   {
@@ -199,7 +195,6 @@ export const PROJECTS = [
     imageAlt: 'Recivo receipt generator showing business details, items and a payment summary',
     link: 'https://recivo.elpisoft.com/',
     linkLabel: 'Visit site',
-    featured: true,
     services: ['web', 'automation'],
   },
   {
@@ -214,7 +209,6 @@ export const PROJECTS = [
     imageAlt: 'Avendro marketplace home page connecting borrowers with lenders',
     link: 'https://avendrobcd.onrender.com/',
     linkLabel: 'Visit site',
-    featured: true,
     services: ['software', 'web'],
   },
   {
@@ -229,7 +223,6 @@ export const PROJECTS = [
     imageAlt: 'ePuno dashboard showing overall balance, monthly balance, income and expenses',
     link: 'https://epuno.elpisoft.com/',
     linkLabel: 'Visit site',
-    featured: true,
     services: ['web'],
   },
   {
@@ -244,7 +237,6 @@ export const PROJECTS = [
     imageAlt: 'Incognito home page with the headline "Receive anonymous messages safely"',
     link: 'https://incognito.elpisoft.com/',
     linkLabel: 'Visit site',
-    featured: true,
     services: ['web'],
   },
   {
@@ -259,7 +251,6 @@ export const PROJECTS = [
     imageAlt: 'SMS Gateway conversation and message-claim screens',
     link: null,
     linkLabel: 'Android app (.APK)',
-    featured: false,
     services: ['mobile', 'automation'],
   },
   {
@@ -274,7 +265,6 @@ export const PROJECTS = [
     imageAlt: 'Satoru logo',
     link: 'https://satoru-chi.vercel.app/',
     linkLabel: 'Visit site',
-    featured: false,
     services: ['web', 'automation', 'ai'],
   },
   {
@@ -289,7 +279,6 @@ export const PROJECTS = [
     imageAlt: 'Point of sale storefront interface',
     link: null,
     linkLabel: 'No public link',
-    featured: false,
     services: ['software', 'web', 'inventory'],
   },
   {
@@ -304,7 +293,6 @@ export const PROJECTS = [
     imageAlt: 'Sentinels logo',
     link: 'https://drive.google.com/file/d/1dB0u3wjIOWzKIGJtJPzDSgzceLOgFC2-/view',
     linkLabel: 'Download (Google Drive)',
-    featured: false,
     services: ['mobile'],
   },
   {
@@ -319,7 +307,6 @@ export const PROJECTS = [
     imageAlt: '',
     link: 'https://sentinelsadmin.onrender.com/',
     linkLabel: 'Visit site',
-    featured: false,
     services: ['software', 'web'],
   },
   {
@@ -334,12 +321,23 @@ export const PROJECTS = [
     imageAlt: 'Tabang Negros logo over a satellite view of Negros Island',
     link: 'https://tabangnegros-installation.vercel.app/',
     linkLabel: 'Visit site',
-    featured: false,
     services: ['web', 'software'],
   },
 ]
 
-export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.featured)
+/**
+ * Selected work: shown on the home page and at the top of /work, in this order. This is the only place that decides
+ * which projects are featured; each project's `featured` flag and FEATURED_PROJECTS are derived from it.
+ */
+const FEATURED_SLUGS = ['peecool', 'qr-ordering-system', 'satoru', 'hr-management-system']
+
+export const PROJECTS = PROJECT_LIST.map((project) => ({ ...project, featured: FEATURED_SLUGS.includes(project.slug) }))
+
+export const FEATURED_PROJECTS = FEATURED_SLUGS.map((slug) => {
+  const project = PROJECTS.find((p) => p.slug === slug)
+  if (!project) throw new Error(`Featured project "${slug}" is not in PROJECTS`)
+  return project
+})
 export const CASE_STUDIES = PROJECTS.filter((p) => p.caseStudy)
 export const projectPath = (project) => `/work/${project.slug}`
 export const projectsForService = (serviceId) => PROJECTS.filter((p) => p.services.includes(serviceId))
