@@ -11,6 +11,9 @@ import imsStart from '../assets/images/optimized/ims-start.webp'
 import imsDashboard from '../assets/images/optimized/ims-dashboard.webp'
 import imsInventory from '../assets/images/optimized/ims-inventory.webp'
 import imsReports from '../assets/images/optimized/ims-reports.webp'
+import qrOrdering from '../assets/images/optimized/qr-ordering.webp'
+import hrManagement from '../assets/images/optimized/hr-management.webp'
+import peecool from '../assets/images/optimized/peecool.webp'
 
 /**
  * All projects. Titles, descriptions, tags and links are carried over from the previous site.
@@ -135,6 +138,54 @@ export const PROJECTS = [
         },
       ],
     },
+  },
+  {
+    slug: 'qr-ordering-system',
+    title: 'QR Ordering System',
+    summary: 'Table ordering from a QR code for cafés and coffee shops.',
+    description:
+      'A QR ordering system for cafés and coffee shops. Customers scan the QR code on their table, browse the menu on their phone, add items with an optional note, review the order and place it. The cashier sees orders on a live board, confirms and serves them, and records cash or cashless payment from a protected dashboard.',
+    tags: ['QR ordering', 'Order management', 'Cashier dashboard'],
+    image: qrOrdering,
+    imageKind: 'screenshot',
+    imageAlt:
+      'Three customer phone screens of the QR ordering system, with sample menu data: the menu with a cart bar, the order review with payment method and note, and the order receipt',
+    link: null,
+    linkLabel: 'No public link',
+    featured: false,
+    services: ['web', 'software'],
+  },
+  {
+    slug: 'hr-management-system',
+    title: 'HR Management System',
+    summary: 'Employee leave days and balances for HR teams, with Excel reports.',
+    description:
+      'A web application for HR teams to track employee leave, built to replace spreadsheet tracking. HR administrators keep employee records, allocate leave days for the year, record leave taken, and correct mistakes with reversals so every change stays on the record. Leave reports and employee lists export to Excel.',
+    tags: ['Leave tracking', 'HR administration', 'Excel reports'],
+    image: hrManagement,
+    imageKind: 'screenshot',
+    imageAlt:
+      'HR leave dashboard with sample data showing total employees, days allocated, used and unused, employees with low balances and recent allocations',
+    link: null,
+    linkLabel: 'No public link',
+    featured: false,
+    services: ['software', 'web'],
+  },
+  {
+    slug: 'peecool',
+    title: 'Peecool',
+    summary: 'Pickleball court management and live scoring.',
+    description:
+      'Court management and scoring for pickleball facilities of up to 24 courts. Staff run bookings, courts and timed open-play sessions with automatic round pairing from a live dashboard, score matches on each court’s own phone or tablet, and show standings on a TV board. It runs on the facility’s own network and keeps working offline.',
+    tags: ['Court management', 'Live scoring', 'Offline-first'],
+    image: peecool,
+    imageKind: 'screenshot',
+    imageAlt:
+      'Peecool dashboard with sample data showing eight pickleball courts with live scores, bookings and recent activity',
+    link: null,
+    linkLabel: 'No public link',
+    featured: false,
+    services: ['software', 'web'],
   },
   {
     slug: 'recivo',
