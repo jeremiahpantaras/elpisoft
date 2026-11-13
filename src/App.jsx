@@ -15,6 +15,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage'
 import IndustriesPage from './pages/IndustriesPage'
 import ContactPage from './pages/contactPage'
 import PrivacyPage from './pages/PrivacyPage'
+import StaCatalinaPage from './pages/StaCatalinaPage'
 import NotFoundPage from './pages/NotFoundPage'
 import { SERVICES, servicePath } from './data/services'
 import { CASE_STUDIES, projectPath } from './data/projects'
@@ -53,6 +54,7 @@ function AnimatedRoutes() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/sta-catalina" element={<StaCatalinaPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Motion.main>

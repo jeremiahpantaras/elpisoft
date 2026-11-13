@@ -70,6 +70,13 @@ export const ROUTES = [
       'How Elpisoft collects, uses and protects personal information under the Philippine Data Privacy Act of 2012 (RA 10173), and how to exercise your rights.',
     crumbs: [{ name: 'Privacy Policy', path: '/privacy-policy' }],
   },
+  // Unlisted: reachable only by its URL. Not linked from any page, not in the sitemap, and served with noindex.
+  {
+    path: '/sta-catalina',
+    title: `STA. CATALINA — ${NAME}`,
+    description: 'A video presented by Elpisoft.',
+    indexable: false,
+  },
 ].map((route) => ({ indexable: true, crumbs: null, ...route }))
 
 /** Served as 404.html with a real 404 status, and used for unknown client-side routes. */

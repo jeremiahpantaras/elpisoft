@@ -50,6 +50,16 @@ for (const url of urls) {
 ok(titles.size === urls.length, 'every page has a unique title')
 ok(descriptions.size === urls.length, 'every page has a unique description')
 
+// Unlisted pages: reachable by URL, never in the sitemap, always noindex.
+for (const p of ['/sta-catalina']) {
+  const file = `${p.slice(1)}.html`
+  ok(fs.existsSync(path.join(dist, file)), `${p}: unlisted page is prerendered (${file})`)
+  if (!fs.existsSync(path.join(dist, file))) continue
+  const head = read(file).slice(0, read(file).indexOf('</head>'))
+  ok(/<meta name="robots" content="noindex"/.test(head) && !/rel="canonical"/.test(head), `${p}: unlisted page is noindex with no canonical`)
+  ok(!urls.some((u) => u.endsWith(p)), `${p}: unlisted page is not in the sitemap`)
+}
+
 const notFound = read('404.html')
 ok(/<meta name="robots" content="noindex"/.test(notFound) && !/rel="canonical"/.test(notFound), '404.html is noindex with no canonical')
 
